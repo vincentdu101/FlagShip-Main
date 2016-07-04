@@ -1,0 +1,84 @@
+<div id="wrapper" class="container-fluid">
+	<div class="tagline">
+
+	</div>
+	<header></header>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 panel">
+			<h5>Current Slides</h5>
+		</div>
+		<div class="col-xs-12 col-sm-4 panel">
+			<h5>Showcased Projects</h5>
+		</div>
+		<div class="col-xs-12 col-sm-4 panel">
+			<h5>Showcased Skills</h5>
+		</div>		
+	</div>
+
+	<div class="resources-table row">
+		<table class="table table-bordered table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<!-- <th>Description</th> -->
+					<th>Category</th>
+					<th>Created</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="#project of projects">
+					<td>{{project._id}}</td>
+					<td>{{project.name}}</td>
+					<!-- <td>{{project.description}}</td> -->
+					<td [innerHTML]="CategoryService.determineArticleCategory(project.category_id)"></td>
+					<td>{{project.created_at}}</td>
+					<td>
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    Actions
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <li><a href="#">Edit</a></li>
+						    <li><a href="#">Showcase</a></li>
+							<li><a href="#">Delete</a></li>
+						  </ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="row resources-grid">
+		<div class="panel panel-default col-xs-12 col-sm-6 resources-card" *ngFor="#project of projects">
+			<div class="row">
+				<div class="col-xs-3">ID</div>
+				<div class="col-xs-9">{{project._id}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">Name</div>
+				<div class="col-xs-9">{{project.name}}</div>
+			</div>
+<!-- 			<div class="row">
+				<div class="col-xs-3">Description</div>
+				<div class="col-xs-9">{{project.description}}</div>
+			</div> -->
+			<div class="row">
+				<div class="col-xs-3">Category</div>
+				<div class="col-xs-9" [innerHtml]="CategoryService.determineArticleCategory(project.category_id)"></div>
+			</div>	
+			<div class="row">
+				<div class="col-xs-3">Created</div>
+				<div class="col-xs-8">{{project.created_at}}</div>
+			</div>			
+		</div>	
+	</div>
+
+</div>
+
+<footer>
+</footer>
