@@ -1,5 +1,5 @@
-import {Injectable} from "angular2/core";
-import {Http} from "angular2/http";
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs/Observer";
 import 'rxjs/add/operator/share';
@@ -40,8 +40,7 @@ export class ProjectService {
 
 	public createProject(project) {
 		project.category_id = "56d2368fbefe83262d3e14e4";
-		this.http.post("http://localhost:8080/articles", this.asyncRequestParse(project),
-			{ headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+		this.http.post("http://localhost:8080/articles", this.asyncRequestParse(project))
 			.subscribe(data => {
 				debugger;
 			});

@@ -1,5 +1,5 @@
-import {Injectable} from "angular2/core";
-import {Http} from "angular2/http";
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
 
 @Injectable() 
 export class CategoryService {
@@ -20,9 +20,11 @@ export class CategoryService {
 				category.name + "</span>";
 	}	
 
-	public getAllCategories() {
+	public getAllCategories(): void {
 		return this.http.get("http://localhost:8080/categories")
-			.map((data) => { return JSON.parse(data._body); })
+			.map((data: Response) => {
+				return JSON.parse(data._body); 
+			})
 			.subscribe((data) => {
 				this.categories = data;
 			});

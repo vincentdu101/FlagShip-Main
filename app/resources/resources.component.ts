@@ -1,7 +1,7 @@
-import {Component} from "angular2/core";
-import {Router} from "angular2/router";
-import {FORM_DIRECTIVES, NgIf} from "angular2/common";
-import {Http, HTTP_PROVIDERS} from "angular2/http";
+import {Component} from "@angular/core";
+import {Router} from "@angular/router";
+import {FORM_DIRECTIVES, NgIf} from "@angular/common";
+import {Http, HTTP_PROVIDERS} from "@angular/http";
 import {Session} from "../services/configuration/session.service";
 import {ProjectService} from "../services/project/project.service";
 import {CategoryService} from "../services/category/category.service";
@@ -26,7 +26,8 @@ export class ResourcesComponent {
 			}
 		});
 		this.projectService.getAllProjects().subscribe((data) => {
-			this.projects = JSON.parse(data._body);
+			debugger;
+			// this.projects = JSON.parse(data._body);
 		});
 	}
 

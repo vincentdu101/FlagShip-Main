@@ -1,12 +1,8 @@
-import {Component} from 'angular2/core';
-import {RouteConfig, RouterOutlet, ROUTER_DIRECTIVES} from "angular2/router";
-import {HomeComponent} from "./home/home.component";
-import {ResourcesComponent} from "./resources/resources.component";
-import {ProjectsComponent} from "./project/projects.component";
-import {NewProjectComponent} from "./project/new.project.component";
+import {Component} from "@angular/core";
+import {RouterConfig, RouterOutlet, ROUTER_DIRECTIVES} from "@angular/router";
 import {CategoryService} from "./services/category/category.service";
 import {ProjectService} from "./services/project/project.service";
-import {Http} from "angular2/http";
+import {Http} from "@angular/http";
 
 @Component({
     selector: 'my-app',
@@ -14,13 +10,6 @@ import {Http} from "angular2/http";
     directives: [ROUTER_DIRECTIVES, RouterOutlet],
     providers: [ProjectService, CategoryService]
 })
-
-@RouteConfig([
-	{ path: "/", name: "Home", component: HomeComponent, useAsDefault: true },
-	{ path: "/resources", name: "Resources", component: ResourcesComponent},
-	{ path: "/projects", name: "Projects", component: ProjectsComponent },
-	{ path: "/projects/new", name: "New Project", component: NewProjectComponent }
-])
 
 export class AppComponent {
 

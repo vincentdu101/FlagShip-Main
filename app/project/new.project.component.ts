@@ -1,6 +1,6 @@
-import {Component} from "angular2/core";
+import {Component} from "@angular/core";
 import {HeaderComponent} from "../header/header.component";
-import {FORM_DIRECTIVES} from "angular2/common";
+import {FORM_DIRECTIVES} from "@angular/common";
 import {ProjectService} from "../services/project/project.service";
 
 @Component({

@@ -108,8 +108,6 @@ app.post("/register", upload.array(), controllers.user.register);
 app.get("/loginSuccess", controllers.user.loginSuccess);
 app.get("/loginFailure", controllers.user.loginFailure);
 
-app.get("/client", express.static("client"));
-
 app.post("/login", passport.authenticate("local"), function(req, res) {
 	// res.redirect("/loginSuccess");
 	req.session.key = req.user._doc.username;

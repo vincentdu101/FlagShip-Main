@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {HeaderComponent} from "../header/header.component";
 import {CarouselComponent} from "../carousel/carousel.component";
 import {SkillsComponent} from "../skills/skills.component";

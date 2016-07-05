@@ -1,5 +1,5 @@
-import {Injectable} from "angular2/core";
-import {Http, HTTP_PROVIDERS} from "angular2/http";
+import {Injectable} from "@angular/core";
+import {Http, HTTP_PROVIDERS} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs/Observer";
 import 'rxjs/add/operator/share';
@@ -36,12 +36,12 @@ export class Session {
 		return str.join("&");
 	}
 
-	public loginUser(formData: {}) {
+	public loginUser(formData: {username: {}, password: {}}) {
 		if (formData.username && formData.password) {
-			this.http.post("http://localhost:8080/login", this.asyncRequestParse(formData),
-				{ headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+			this.http.post("http://localhost:8080/login", this.asyncRequestParse(formData))
 				.subscribe(data => {
-					this.currentUser = JSON.parse(data._body);
+					debugger;
+					// this.currentUser = JSON.parse(data._body);
 					this.sessionObserver.next({ success: this.currentUser });
 				});
 		} else {

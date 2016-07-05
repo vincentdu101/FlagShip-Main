@@ -1,7 +1,7 @@
-import {Component} from "angular2/core";
-import {Router} from "angular2/router";
-import {FORM_DIRECTIVES, NgIf} from "angular2/common";
-import {Http, HTTP_PROVIDERS} from "angular2/http";
+import {Component} from "@angular/core";
+import {Router} from "@angular/router";
+import {FORM_DIRECTIVES, NgIf} from "@angular/common";
+import {Http, HTTP_PROVIDERS} from "@angular/http";
 import {Session} from "../services/configuration/session.service";
 
 
@@ -15,25 +15,25 @@ import {Session} from "../services/configuration/session.service";
 export class HeaderComponent {
 
 	public login = { username: "", password: "" };
-	public user = undefined;
+	public user = {};
 	
 	constructor(private router: Router, private http: Http,
 				private Session: Session) {
 
 	}
 
-	public goToPage(page, config = {}) {
+	public goToPage(page: string, config = {}) {
 		this.router.navigate([page, config]);
 	}
 
-	public loginUser() {
+	public loginUser(): void {
 		let formData = { username: this.login.username, password: this.login.password };
 		this.Session.loginUser(formData);
 		let sessionObservable = this.Session.sessionObservable.subscribe((data) => {
 			if (data.success) {
 				this.user = data.success;
 				sessionObservable.unsubscribe();
-				$(".login-modal").modal({ show: false });
+				// $(".login-modal").modal({ show: false });
 			}
 		});
 	}
