@@ -26,12 +26,9 @@ var CategoryService = (function () {
     };
     CategoryService.prototype.getAllCategories = function () {
         var _this = this;
-        return this.http.get("http://localhost:8080/categories")
-            .map(function (data) {
-            return JSON.parse(data._body);
-        })
+        this.http.get("http://localhost:8080/categories")
             .subscribe(function (data) {
-            _this.categories = data;
+            _this.categories = data.json();
         });
     };
     CategoryService.prototype.findCategory = function (id) {

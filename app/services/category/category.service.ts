@@ -21,12 +21,9 @@ export class CategoryService {
 	}	
 
 	public getAllCategories(): void {
-		return this.http.get("http://localhost:8080/categories")
-			.map((data: Response) => {
-				return JSON.parse(data._body); 
-			})
+		this.http.get("http://localhost:8080/categories")
 			.subscribe((data) => {
-				this.categories = data;
+				this.categories = data.json();
 			});
 	}
 

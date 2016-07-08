@@ -9,13 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
+var carousel_1 = require("ng2-bootstrap/components/carousel");
 var CarouselComponent = (function () {
     function CarouselComponent() {
+        this.intervalChange = 5000;
+        this.slides = [];
+        this.slides = [
+            { text: "test" }, { text: "YES1" }
+        ];
     }
     CarouselComponent = __decorate([
         core_1.Component({
             selector: "carousel",
-            templateUrl: "./app/carousel/carousel.component.html"
+            templateUrl: "./app/carousel/carousel.component.html",
+            directives: [carousel_1.CAROUSEL_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [])
     ], CarouselComponent);
