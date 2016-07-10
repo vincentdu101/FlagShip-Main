@@ -15,7 +15,9 @@ export class CarouselComponent {
 
     public constructor() {
         this.slides = [
-            { text: "test" }, { text: "YES1" }
+            { text: "Innovation", image: "app/images/slides/innovation.jpg" }, 
+            { text: "Experience" },
+            { text: "Passion"}
         ];
     }
 	

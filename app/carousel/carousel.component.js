@@ -16,7 +16,9 @@ var CarouselComponent = (function () {
         this.intervalChange = 5000;
         this.slides = [];
         this.slides = [
-            { text: "test" }, { text: "YES1" }
+            { text: "Innovation", image: "app/images/slides/innovation.jpg" },
+            { text: "Experience" },
+            { text: "Passion" }
         ];
     }
     CarouselComponent = __decorate([

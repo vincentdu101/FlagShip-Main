@@ -6,14 +6,16 @@
     <base href="/">
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="app/scss/aggregated.css" />
     <!-- 1. Load libraries -->
-     <!-- Polyfill(s) for older browsers -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/core-js/client/shim.min.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
+    <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.js"></script>
+    
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
     <script>
