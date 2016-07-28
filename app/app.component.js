@@ -12,6 +12,9 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var category_service_1 = require("./services/category/category.service");
 var project_service_1 = require("./services/project/project.service");
+var carousel_service_1 = require("./services/carousel/carousel.service");
+var skills_service_1 = require("./services/skills/skills.service");
+var portfolio_service_1 = require("./services/portfolio/portfolio.service");
 var AppComponent = (function () {
     function AppComponent(projectService, categoryService) {
         this.projectService = projectService;
@@ -23,7 +26,13 @@ var AppComponent = (function () {
             selector: 'my-app',
             templateUrl: './app/app.component.html',
             directives: [router_1.ROUTER_DIRECTIVES, router_1.RouterOutlet],
-            providers: [project_service_1.ProjectService, category_service_1.CategoryService]
+            providers: [
+                project_service_1.ProjectService,
+                category_service_1.CategoryService,
+                carousel_service_1.CarouselService,
+                skills_service_1.SkillsService,
+                portfolio_service_1.PortfolioService
+            ]
         }), 
         __metadata('design:paramtypes', [project_service_1.ProjectService, category_service_1.CategoryService])
     ], AppComponent);

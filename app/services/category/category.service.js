@@ -20,7 +20,7 @@ var CategoryService = (function () {
         };
     }
     CategoryService.prototype.determineArticleCategory = function (category_id) {
-        var category = this.findCategory(category_id);
+        var category = this.findCategoryById(category_id);
         return "<span class='label label-" + this.TYPE[category.name] + "'>" +
             category.name + "</span>";
     };
@@ -31,9 +31,16 @@ var CategoryService = (function () {
             _this.categories = data.json();
         });
     };
-    CategoryService.prototype.findCategory = function (id) {
+    CategoryService.prototype.findCategoryById = function (id) {
         return this.categories.filter(function (data) {
             if (data._id === id) {
+                return data;
+            }
+        })[0];
+    };
+    CategoryService.prototype.findCategoryByName = function (name) {
+        return this.categories.filter(function (data) {
+            if (data.name === name) {
                 return data;
             }
         })[0];

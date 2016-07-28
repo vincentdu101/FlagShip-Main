@@ -6,8 +6,7 @@ var notAuthenticated = "user not authenticated";
 var ObjectId = require("mongodb").ObjectID;
 
 ArticleController.create = function(req, res) {
-	debugger;
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		var article = new Article({
 			name: req.body.name,
 			description: req.body.description,
@@ -21,9 +20,9 @@ ArticleController.create = function(req, res) {
 				res.status(200).json(article);
 			}
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };
 
 ArticleController.get = function(req, res) {
@@ -60,7 +59,7 @@ ArticleController.index = function(req, res) {
 };
 
 ArticleController.update = function(req, res) {
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		Article.findById(req.params.id, function(error, article){
 			if (error || !article) {
 				res.status(500).json(error);
@@ -78,13 +77,13 @@ ArticleController.update = function(req, res) {
 				});
 			}
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };
 
 ArticleController.delete = function(req, res) {
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		var id = req.params.id;
 
 		Article.findById(id, function(error, article){
@@ -100,9 +99,9 @@ ArticleController.delete = function(req, res) {
 				});
 			}		
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };
 
 module.exports = ArticleController;

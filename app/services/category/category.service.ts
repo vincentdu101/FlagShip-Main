@@ -15,7 +15,7 @@ export class CategoryService {
 	};
 
 	public determineArticleCategory(category_id) {
-		var category = this.findCategory(category_id);
+		var category = this.findCategoryById(category_id);
 		return "<span class='label label-" + this.TYPE[category.name] + "'>" + 
 				category.name + "</span>";
 	}	
@@ -27,12 +27,20 @@ export class CategoryService {
 			});
 	}
 
-	public findCategory(id: string) {
+	public findCategoryById(id: string) {
 		return this.categories.filter((data) => { 
 			if (data._id === id) {
 				return data;
 			} 
 		})[0];
 	} 
+
+	public findCategoryByName(name: string) {
+		return this.categories.filter((data) => {
+			if (data.name === name) {
+				return data;
+			}
+		})[0];
+	}
 
 }

@@ -5,7 +5,7 @@ var CategoryController = {};
 var notAuthenticated = "user not authenticated";
 
 CategoryController.create = function(req, res) {
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		var category = new Category({
 			name: req.body.name,
 			description: req.body.description
@@ -18,13 +18,13 @@ CategoryController.create = function(req, res) {
 				res.status(200).json(category);
 			}
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };
 
 CategoryController.get = function(req, res) {
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		var id = req.params.id;
 		Category.findById(id, function(error, category){
 			if (error) {
@@ -33,9 +33,9 @@ CategoryController.get = function(req, res) {
 				res.status(200).json(category);
 			}
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };	
 
 CategoryController.index = function(req, res) {
@@ -53,7 +53,7 @@ CategoryController.index = function(req, res) {
 };
 
 CategoryController.update = function(req, res) {
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		Category.findById(req.params.id, function(error, category){
 			if (error || !category) {
 				res.status(500).json(error);
@@ -70,13 +70,13 @@ CategoryController.update = function(req, res) {
 				});
 			}
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };
 
 CategoryController.delete = function(req, res) {
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		var id = req.params.id;
 
 		Category.findById(id, function(error, category){
@@ -92,9 +92,9 @@ CategoryController.delete = function(req, res) {
 				});
 			}		
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };
 
 module.exports = CategoryController;

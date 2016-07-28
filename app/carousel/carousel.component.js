@@ -11,15 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var carousel_1 = require("ng2-bootstrap/components/carousel");
+var carousel_service_1 = require("../services/carousel/carousel.service");
 var CarouselComponent = (function () {
-    function CarouselComponent() {
+    function CarouselComponent(carouselService) {
+        var _this = this;
+        this.carouselService = carouselService;
         this.intervalChange = 5000;
         this.slides = [];
-        this.slides = [
-            { text: "Innovation", image: "app/images/slides/innovation.jpg" },
-            { text: "Experience" },
-            { text: "Passion" }
-        ];
+        this.carouselService.getSlides().subscribe(function (data) {
+            _this.slides = data.json();
+        });
     }
     CarouselComponent = __decorate([
         core_1.Component({
@@ -27,7 +28,7 @@ var CarouselComponent = (function () {
             templateUrl: "./app/carousel/carousel.component.html",
             directives: [carousel_1.CAROUSEL_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [carousel_service_1.CarouselService])
     ], CarouselComponent);
     return CarouselComponent;
 }());
