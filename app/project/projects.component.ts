@@ -13,24 +13,30 @@ export class ProjectsComponent {
 
 	public portfolio: Array<any> = [];
 	public portfolioOptions: Array<any> = [];
+	public currentProject: any = { 
+		name: "Choose Project", 
+		description: "to view", 
+		image: "" 
+	};
 
 	constructor(private portfolioService: PortfolioService) {
 		this.portfolioService.getPortfolio().subscribe((data) => {
-			this.portfolio = data.json();
-			this.initPortfolioActive();
+			this.portfolio = this.initPortfolioActive(data.json());
 			this.portfolioOptions = this.portfolioService.parsePortfolio(this.portfolio);
 		});
 	}
 
-	private initPortfolioActive() {
-		this.portfolio.map((data) => {
-			data.active = false;
-			return data;
+	private initPortfolioActive(data) {
+		return data.map((item) => {
+			item.active = false;
+			return item;
 		});
 	}
 
-	public portfolioSelected(value: any) {
-		debugger;
+	public portfolioSelected(item: any): void {
+		this.currentProject = this.portfolio.filter((data) => {
+			return data.name === item.text;
+		})[0];
 	}
 
 }

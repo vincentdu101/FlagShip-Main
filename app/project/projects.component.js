@@ -18,20 +18,26 @@ var ProjectsComponent = (function () {
         this.portfolioService = portfolioService;
         this.portfolio = [];
         this.portfolioOptions = [];
+        this.currentProject = {
+            name: "Choose Project",
+            description: "to view",
+            image: ""
+        };
         this.portfolioService.getPortfolio().subscribe(function (data) {
-            _this.portfolio = data.json();
-            _this.initPortfolioActive();
+            _this.portfolio = _this.initPortfolioActive(data.json());
             _this.portfolioOptions = _this.portfolioService.parsePortfolio(_this.portfolio);
         });
     }
-    ProjectsComponent.prototype.initPortfolioActive = function () {
-        this.portfolio.map(function (data) {
-            data.active = false;
-            return data;
+    ProjectsComponent.prototype.initPortfolioActive = function (data) {
+        return data.map(function (item) {
+            item.active = false;
+            return item;
         });
     };
-    ProjectsComponent.prototype.portfolioSelected = function (value) {
-        debugger;
+    ProjectsComponent.prototype.portfolioSelected = function (item) {
+        this.currentProject = this.portfolio.filter(function (data) {
+            return data.name === item.text;
+        })[0];
     };
     ProjectsComponent = __decorate([
         core_1.Component({
