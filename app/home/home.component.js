@@ -9,11 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var header_component_1 = require("../header/header.component");
 var carousel_component_1 = require("../carousel/carousel.component");
 var skills_component_1 = require("../skills/skills.component");
 var projects_component_1 = require("../project/projects.component");
-var footer_component_1 = require("../footer/footer.component");
 var HomeComponent = (function () {
     function HomeComponent() {
     }
@@ -22,11 +20,9 @@ var HomeComponent = (function () {
             selector: 'home',
             templateUrl: './app/home/home.component.html',
             directives: [
-                header_component_1.HeaderComponent,
                 carousel_component_1.CarouselComponent,
                 skills_component_1.SkillsComponent,
-                projects_component_1.ProjectsComponent,
-                footer_component_1.FooterComponent
+                projects_component_1.ProjectsComponent
             ]
         }), 
         __metadata('design:paramtypes', [])

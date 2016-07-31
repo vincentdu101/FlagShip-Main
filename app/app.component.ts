@@ -1,5 +1,7 @@
 import {Component} from "@angular/core";
 import {RouterConfig, RouterOutlet, ROUTER_DIRECTIVES} from "@angular/router";
+import {HeaderComponent} from "./header/header.component";
+import {FooterComponent} from "./footer/footer.component";
 import {CategoryService} from "./services/category/category.service";
 import {ProjectService} from "./services/project/project.service";
 import {CarouselService} from "./services/carousel/carousel.service";
@@ -10,7 +12,7 @@ import {Http} from "@angular/http";
 @Component({
     selector: 'my-app',
     templateUrl: './app/app.component.html',
-    directives: [ROUTER_DIRECTIVES, RouterOutlet],
+    directives: [ROUTER_DIRECTIVES, RouterOutlet, HeaderComponent, FooterComponent],
     providers: [
     	ProjectService, 
     	CategoryService, 

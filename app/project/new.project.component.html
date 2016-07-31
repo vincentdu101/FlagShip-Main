@@ -1,9 +1,4 @@
-<header></header>
-
-<div class="tagline">
-</div>
-
-<form class="container-fluid">
+<form class="container-fluid top-buffer">
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-4 panel hide">
@@ -19,13 +14,10 @@
 				</div>				
 			</div>
 			<div class="row">
-				<div class="col-xs-12 col-sm-3">
-					Description
-				</div>
-				<div class="col-xs-12 col-sm-9">
-					<textarea class="form-control" [(ngModel)]="project.description">
-					</textarea>
-				</div>				
+			    <ckeditor [(ngModel)]="content" debounce="500">
+			      <p>Hello <strong>world</strong></p>
+			    </ckeditor>
+			    <div [innerHTML]="content"></div>			
 			</div>
 			<button (click)="createProject()" class="btn btn-primary">Create</button>		
 			<button (click)="createProject()" class="btn btn-default">Cancel</button>			

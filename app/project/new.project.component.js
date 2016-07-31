@@ -9,13 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var header_component_1 = require("../header/header.component");
 var common_1 = require("@angular/common");
 var project_service_1 = require("../services/project/project.service");
+var ng2_ckeditor_1 = require('ng2-ckeditor');
 var NewProjectComponent = (function () {
     function NewProjectComponent(projectService) {
         this.projectService = projectService;
         this.project = { name: "", description: "" };
+        this.content = '<p>Hello <strong>World !</strong></p>';
     }
     NewProjectComponent.prototype.createProject = function () {
         this.projectService.createProject(this.project);
@@ -23,7 +24,8 @@ var NewProjectComponent = (function () {
     NewProjectComponent = __decorate([
         core_1.Component({
             templateUrl: "./app/project/new.project.component.html",
-            directives: [header_component_1.HeaderComponent, common_1.FORM_DIRECTIVES]
+            selector: "new-project",
+            directives: [common_1.FORM_DIRECTIVES, ng2_ckeditor_1.CKEditor]
         }), 
         __metadata('design:paramtypes', [project_service_1.ProjectService])
     ], NewProjectComponent);

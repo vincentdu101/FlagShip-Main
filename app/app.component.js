@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var header_component_1 = require("./header/header.component");
+var footer_component_1 = require("./footer/footer.component");
 var category_service_1 = require("./services/category/category.service");
 var project_service_1 = require("./services/project/project.service");
 var carousel_service_1 = require("./services/carousel/carousel.service");
@@ -25,7 +27,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             templateUrl: './app/app.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES, router_1.RouterOutlet],
+            directives: [router_1.ROUTER_DIRECTIVES, router_1.RouterOutlet, header_component_1.HeaderComponent, footer_component_1.FooterComponent],
             providers: [
                 project_service_1.ProjectService,
                 category_service_1.CategoryService,

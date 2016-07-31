@@ -45,6 +45,11 @@
   var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
   // Add package entries for angular packages
   ngPackageNames.forEach(setPackageConfig);
+
+  // ng2-ckeditor
+  map['ng2-ckeditor'] = 'https://npmcdn.com/ng2-ckeditor@1.0.4';
+  packages['ng2-ckeditor'] = { main: 'lib/CKEditor.js', defaultExtension: 'js' };
+  
   var config = {
     map: map,
     packages: packages

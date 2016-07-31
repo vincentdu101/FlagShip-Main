@@ -7,6 +7,11 @@
     background: rgba(201, 210, 209, 0.2);
 }
 
+.top-buffer {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
 .hide {
 	display:none;
 }
@@ -31,8 +36,6 @@
 .carousel-section {
 	background-color: white;
 	height: 400px;
-	margin-top: 100px;
-	margin-bottom: 100px;
 
 	.carousel-control {
 		width: 50px;
