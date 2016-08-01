@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Router} from "@angular/router";
+import {Http, RequestOptions, Headers} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs/Observer";
 import 'rxjs/add/operator/share';
@@ -13,7 +14,8 @@ export class ProjectService {
 	private projectObserver;
 
 	constructor(private http: Http,
-				private categoryService: CategoryService) {
+				private categoryService: CategoryService,
+				private router: Router) {
 		this.projectObservable = new Observable((observer) => {
 			this.projectObserver = observer;
 		});
@@ -42,9 +44,14 @@ export class ProjectService {
 
 	public createProject(project) {
 		project.category_id = this.categoryService.findCategoryByName("Projects")._id;
-		this.http.post("http://localhost:8080/articles", this.asyncRequestParse(project))
+		
+		let body = JSON.stringify(project);
+		let headers = new Headers({ "Content-Type": "application/json" });
+		let options = new RequestOptions({ headers: headers });
+			
+		this.http.post("http://localhost:8080/articles", body, options)
 			.subscribe(data => {
-				debugger;
+				this.router.navigate(["/projects"]);
 			});
 	}
 

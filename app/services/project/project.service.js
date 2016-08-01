@@ -9,16 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require('rxjs/add/operator/share');
 require('rxjs/add/operator/startWith');
 var category_service_1 = require("../category/category.service");
 var ProjectService = (function () {
-    function ProjectService(http, categoryService) {
+    function ProjectService(http, categoryService, router) {
         var _this = this;
         this.http = http;
         this.categoryService = categoryService;
+        this.router = router;
         this.projectObservable = new Observable_1.Observable(function (observer) {
             _this.projectObserver = observer;
         });
@@ -44,15 +46,19 @@ var ProjectService = (function () {
         return this.http.get("http://localhost:8080/articles?category_id=56d2368fbefe83262d3e14e4");
     };
     ProjectService.prototype.createProject = function (project) {
+        var _this = this;
         project.category_id = this.categoryService.findCategoryByName("Projects")._id;
-        this.http.post("http://localhost:8080/articles", this.asyncRequestParse(project))
+        var body = JSON.stringify(project);
+        var headers = new http_1.Headers({ "Content-Type": "application/json" });
+        var options = new http_1.RequestOptions({ headers: headers });
+        this.http.post("http://localhost:8080/articles", body, options)
             .subscribe(function (data) {
-            debugger;
+            _this.router.navigate(["/projects"]);
         });
     };
     ProjectService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, category_service_1.CategoryService])
+        __metadata('design:paramtypes', [http_1.Http, category_service_1.CategoryService, router_1.Router])
     ], ProjectService);
     return ProjectService;
 }());
