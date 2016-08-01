@@ -13,13 +13,15 @@ var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require('rxjs/add/operator/share');
 require('rxjs/add/operator/startWith');
+var category_service_1 = require("../category/category.service");
 var ProjectService = (function () {
-    function ProjectService(http) {
+    function ProjectService(http, categoryService) {
         var _this = this;
         this.http = http;
+        this.categoryService = categoryService;
         this.projectObservable = new Observable_1.Observable(function (observer) {
             _this.projectObserver = observer;
-        }).share();
+        });
     }
     ProjectService.prototype.asyncRequestParse = function (data) {
         var str = [];
@@ -42,7 +44,7 @@ var ProjectService = (function () {
         return this.http.get("http://localhost:8080/articles?category_id=56d2368fbefe83262d3e14e4");
     };
     ProjectService.prototype.createProject = function (project) {
-        project.category_id = "56d2368fbefe83262d3e14e4";
+        project.category_id = this.categoryService.findCategoryByName("Projects")._id;
         this.http.post("http://localhost:8080/articles", this.asyncRequestParse(project))
             .subscribe(function (data) {
             debugger;
@@ -50,7 +52,7 @@ var ProjectService = (function () {
     };
     ProjectService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, category_service_1.CategoryService])
     ], ProjectService);
     return ProjectService;
 }());

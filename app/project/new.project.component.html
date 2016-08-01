@@ -1,10 +1,9 @@
 <form class="container-fluid top-buffer">
 
+	<h4>Create a New Project</h4>
+
 	<div class="row">
-		<div class="col-xs-12 col-sm-4 panel hide">
-		</div>
-		<div class="col-xs-12 col-sm-8 panel">
-			<h4>New Project</h4>
+		<div class="col-xs-12 col-sm-6 panel">
 			<div class="row">
 				<div class="col-xs-12 col-sm-3">
 					Name
@@ -14,13 +13,20 @@
 				</div>				
 			</div>
 			<div class="row">
-			    <ckeditor [(ngModel)]="content" debounce="500">
-			      <p>Hello <strong>world</strong></p>
-			    </ckeditor>
-			    <div [innerHTML]="content"></div>			
+				<div class="col-xs-12 col-sm-3">
+					Description
+				</div>
+				<div class="col-xs-12 col-sm-9">
+			    	<textarea [(ngModel)]="project.description" class="form-control editor-textarea"></textarea>
+			    </div>
 			</div>
-			<button (click)="createProject()" class="btn btn-primary">Create</button>		
-			<button (click)="createProject()" class="btn btn-default">Cancel</button>			
+			<div class="row">
+				<button (click)="createProject()" class="btn btn-primary">Create</button>		
+				<button (click)="createProject()" class="btn btn-default">Cancel</button>	
+			</div>		
+		</div>
+		<div class="col-xs-12 col-sm-6 panel panel-default editor-preview-section">
+			<div [innerHTML]="project.description"></div>
 		</div>
 	</div>
 

@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var project_service_1 = require("../services/project/project.service");
-var ng2_ckeditor_1 = require('ng2-ckeditor');
 var NewProjectComponent = (function () {
     function NewProjectComponent(projectService) {
         this.projectService = projectService;
@@ -25,7 +24,7 @@ var NewProjectComponent = (function () {
         core_1.Component({
             templateUrl: "./app/project/new.project.component.html",
             selector: "new-project",
-            directives: [common_1.FORM_DIRECTIVES, ng2_ckeditor_1.CKEditor]
+            directives: [common_1.FORM_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [project_service_1.ProjectService])
     ], NewProjectComponent);

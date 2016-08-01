@@ -4,6 +4,7 @@ import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs/Observer";
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/startWith';
+import {CategoryService} from "../category/category.service";
 
 @Injectable() 
 export class ProjectService {
@@ -11,10 +12,11 @@ export class ProjectService {
 	public projectObservable;
 	private projectObserver;
 
-	constructor(private http: Http) {
+	constructor(private http: Http,
+				private categoryService: CategoryService) {
 		this.projectObservable = new Observable((observer) => {
 			this.projectObserver = observer;
-		}).share();
+		});
 	}
 
 	private asyncRequestParse(data) {
@@ -39,7 +41,7 @@ export class ProjectService {
 	}
 
 	public createProject(project) {
-		project.category_id = "56d2368fbefe83262d3e14e4";
+		project.category_id = this.categoryService.findCategoryByName("Projects")._id;
 		this.http.post("http://localhost:8080/articles", this.asyncRequestParse(project))
 			.subscribe(data => {
 				debugger;

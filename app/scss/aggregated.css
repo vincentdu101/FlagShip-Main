@@ -80,3 +80,13 @@ footer {
     display: none; }
   .resources-grid {
     display: block; } }
+
+.editor-preview-section {
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll; }
+
+.editor-textarea {
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: scroll; }
