@@ -1,8 +1,9 @@
 <div class="container-fluid top-buffer">
 
 	<div class="row">
-		<div class="panel panel-default col-xs-12 col-md-3" *ngFor="let project of projects">
+		<div class="panel panel-default col-xs-12 col-sm-4" *ngFor="let project of projects">
 			<h3>{{project.name}}</h3>
+			<div><img src="{{outputImagePath(project.image)}}" class="img-responsive" *ngIf="project.image" />
 			<div>{{project.description}}</div>
 		</div>
 	</div>

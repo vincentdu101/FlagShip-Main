@@ -17,6 +17,7 @@ var project_service_1 = require("./services/project/project.service");
 var carousel_service_1 = require("./services/carousel/carousel.service");
 var skills_service_1 = require("./services/skills/skills.service");
 var portfolio_service_1 = require("./services/portfolio/portfolio.service");
+var config_1 = require("./services/configuration/config");
 var AppComponent = (function () {
     function AppComponent(projectService, categoryService) {
         this.projectService = projectService;
@@ -33,7 +34,8 @@ var AppComponent = (function () {
                 category_service_1.CategoryService,
                 carousel_service_1.CarouselService,
                 skills_service_1.SkillsService,
-                portfolio_service_1.PortfolioService
+                portfolio_service_1.PortfolioService,
+                config_1.Config
             ]
         }), 
         __metadata('design:paramtypes', [project_service_1.ProjectService, category_service_1.CategoryService])

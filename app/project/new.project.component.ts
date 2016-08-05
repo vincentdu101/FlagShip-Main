@@ -11,7 +11,7 @@ import {ProjectService} from "../services/project/project.service";
 
 export class NewProjectComponent {
 
-	public project = { name: "", description: "" };
+	public project = { name: "", description: "", image: "", body: "" };
 	public content;
 
 	constructor(private projectService: ProjectService) {

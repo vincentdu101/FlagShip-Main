@@ -14,11 +14,27 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-3">
+					Body
+				</div>
+				<div class="col-xs-12 col-sm-9">
+			    	<textarea [(ngModel)]="project.body" class="form-control editor-textarea"></textarea>
+			    </div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-3">
 					Description
 				</div>
 				<div class="col-xs-12 col-sm-9">
-			    	<textarea [(ngModel)]="project.description" class="form-control editor-textarea"></textarea>
-			    </div>
+					<input type="text" class="form-control" [(ngModel)]="project.description" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-3">
+					Caption File Name
+				</div>
+				<div class="col-xs-12 col-sm-9">
+					<input type="text" class="form-control" [(ngModel)]="project.image" />
+				</div>
 			</div>
 			<div class="row">
 				<button (click)="createProject()" class="btn btn-primary">Create</button>		
@@ -26,7 +42,7 @@
 			</div>		
 		</div>
 		<div class="col-xs-12 col-sm-6 panel panel-default editor-preview-section">
-			<div [innerHTML]="project.description"></div>
+			<div [innerHTML]="project.body"></div>
 		</div>
 	</div>
 

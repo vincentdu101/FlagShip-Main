@@ -5,12 +5,10 @@ var MediaController = {};
 var notAuthenticated = "user not authenticated";
 
 MediaController.create = function(req, res) {
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		var media = new Media({
 			name: req.body.name,
-			description: req.body.description,
-			article_id: req.body.article_id,
-			category_id: req.body.category_id
+			url: req.body.url
 		});
 
 		media.save(function(error, media){
@@ -20,9 +18,9 @@ MediaController.create = function(req, res) {
 				res.status(200).json(media);
 			}
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };
 
 MediaController.get = function(req, res) {
@@ -55,7 +53,7 @@ MediaController.index = function(req, res) {
 };
 
 MediaController.update = function(req, res) {
-	if (req.isAuthenticated()) {
+	// if (req.isAuthenticated()) {
 		Media.findById(req.params.id, function(error, media){
 			if (error || !media) {
 				res.status(500).json(error);
@@ -74,9 +72,9 @@ MediaController.update = function(req, res) {
 				});
 			}
 		});
-	} else {
-		res.status(500).json({error: notAuthenticated});
-	}
+	// } else {
+	// 	res.status(500).json({error: notAuthenticated});
+	// }
 };
 
 MediaController.delete = function(req, res) {

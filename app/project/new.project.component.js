@@ -14,7 +14,7 @@ var project_service_1 = require("../services/project/project.service");
 var NewProjectComponent = (function () {
     function NewProjectComponent(projectService) {
         this.projectService = projectService;
-        this.project = { name: "", description: "" };
+        this.project = { name: "", description: "", image: "", body: "" };
         this.content = '<p>Hello <strong>World !</strong></p>';
     }
     NewProjectComponent.prototype.createProject = function () {

@@ -11,23 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var project_service_1 = require("../services/project/project.service");
+var config_1 = require("../services/configuration/config");
 var ProjectsIndexComponent = (function () {
-    function ProjectsIndexComponent(projectService) {
+    function ProjectsIndexComponent(projectService, config) {
         var _this = this;
         this.projectService = projectService;
+        this.config = config;
         this.projects = [];
         this.projectService.getAllProjects().subscribe(function (data) {
             _this.projects = data.json();
             console.log(_this.projects);
         });
     }
+    ProjectsIndexComponent.prototype.outputImagePath = function (image) {
+        return this.config.imagePath + "/" + image;
+    };
     ProjectsIndexComponent = __decorate([
         core_1.Component({
             selector: "projects-index",
             templateUrl: "./app/project/projects.index.component.html",
             directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [project_service_1.ProjectService])
+        __metadata('design:paramtypes', [project_service_1.ProjectService, config_1.Config])
     ], ProjectsIndexComponent);
     return ProjectsIndexComponent;
 }());

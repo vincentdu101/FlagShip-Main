@@ -7,6 +7,7 @@ import {ProjectService} from "./services/project/project.service";
 import {CarouselService} from "./services/carousel/carousel.service";
 import {SkillsService} from "./services/skills/skills.service";
 import {PortfolioService} from "./services/portfolio/portfolio.service";
+import {Config} from "./services/configuration/config";
 import {Http} from "@angular/http";
 
 @Component({
@@ -18,7 +19,8 @@ import {Http} from "@angular/http";
     	CategoryService, 
     	CarouselService, 
     	SkillsService,
-    	PortfolioService
+    	PortfolioService,
+        Config
     ]
 })
 
