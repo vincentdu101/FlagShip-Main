@@ -22,7 +22,7 @@ var AppComponent = (function () {
     function AppComponent(projectService, categoryService) {
         this.projectService = projectService;
         this.categoryService = categoryService;
-        this.categoryService.getAllCategories();
+        this.categoryService.loadAllCategories();
     }
     AppComponent = __decorate([
         core_1.Component({

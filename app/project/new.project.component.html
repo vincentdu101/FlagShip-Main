@@ -30,6 +30,21 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-3">
+					Category
+				</div>
+				<div class="col-xs-12 col-sm-9">
+					<div class="btn-group" dropdown keyboardNav="true">
+						<button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
+						  {{ project.category }} <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+						  <li role="menuitem" *ngFor="let category of categories"><a class="dropdown-item" (click)="toggleDropdown(category)">{{category.name}}</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-3">
 					Caption File Name
 				</div>
 				<div class="col-xs-12 col-sm-9">

@@ -29,7 +29,7 @@ export class AppComponent {
 	constructor(private projectService: ProjectService,
 				private categoryService: CategoryService) {
 		
-		this.categoryService.getAllCategories();
+		this.categoryService.loadAllCategories();
 	
 	}
 

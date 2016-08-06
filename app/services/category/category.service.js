@@ -24,7 +24,7 @@ var CategoryService = (function () {
         return "<span class='label label-" + this.TYPE[category.name] + "'>" +
             category.name + "</span>";
     };
-    CategoryService.prototype.getAllCategories = function () {
+    CategoryService.prototype.loadAllCategories = function () {
         var _this = this;
         this.http.get("http://localhost:8080/categories")
             .subscribe(function (data) {
@@ -44,6 +44,9 @@ var CategoryService = (function () {
                 return data;
             }
         })[0];
+    };
+    CategoryService.prototype.getCategories = function () {
+        return this.categories;
     };
     CategoryService = __decorate([
         core_1.Injectable(), 

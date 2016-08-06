@@ -20,7 +20,7 @@ export class CategoryService {
 				category.name + "</span>";
 	}	
 
-	public getAllCategories(): void {
+	public loadAllCategories(): void {
 		this.http.get("http://localhost:8080/categories")
 			.subscribe((data) => {
 				this.categories = data.json();
@@ -41,6 +41,10 @@ export class CategoryService {
 				return data;
 			}
 		})[0];
+	}
+
+	public getCategories() {
+		return this.categories;
 	}
 
 }
