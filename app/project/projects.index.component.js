@@ -15,21 +15,27 @@ var config_1 = require("../services/configuration/config");
 var router_1 = require("@angular/router");
 var ProjectsIndexComponent = (function () {
     function ProjectsIndexComponent(projectService, config, router) {
-        var _this = this;
         this.projectService = projectService;
         this.config = config;
         this.router = router;
         this.projects = [];
-        this.projectService.getAllProjects().subscribe(function (data) {
-            _this.projects = data.json();
-            console.log(_this.projects);
-        });
+        this.getProjects();
     }
+    ProjectsIndexComponent.prototype.getProjects = function (options) {
+        var _this = this;
+        if (options === void 0) { options = { name: undefined }; }
+        this.projectService.getAllProjects(options).subscribe(function (data) {
+            _this.projects = data.json();
+        });
+    };
     ProjectsIndexComponent.prototype.outputImagePath = function (image) {
         return this.config.imagePath + "/" + image;
     };
     ProjectsIndexComponent.prototype.editProject = function (project) {
         this.router.navigate(["/projects/edit/" + project._id, {}]);
+    };
+    ProjectsIndexComponent.prototype.searchForName = function (event) {
+        this.getProjects({ name: event.target.value });
     };
     ProjectsIndexComponent = __decorate([
         core_1.Component({

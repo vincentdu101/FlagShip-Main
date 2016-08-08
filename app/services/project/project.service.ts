@@ -49,8 +49,9 @@ export class ProjectService {
 		return urlParams;
 	} 
 
-	public getAllProjects() {
-		return this.http.get("http://localhost:8080/articles?category_id=56d2368fbefe83262d3e14e4");
+	public getAllProjects(options = {name: undefined}) {
+		var category_id = "56d2368fbefe83262d3e14e4";
+		return this.http.get("http://localhost:8080/articles?category_id=" + category_id + "&name=" + options.name);
 	}
 
 	public createProject(project) {

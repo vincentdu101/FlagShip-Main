@@ -34,6 +34,10 @@ function findImagesForArticles(articles) {
 	return deferred;
 }
 
+function convertToRegexFilter(key, value) {
+	return { $regex: new RegExp(value, "i"), $options: "m"};
+}
+
 ArticleController.create = function(req, res) {
 	// if (req.isAuthenticated()) {
 		var article = new Article({
@@ -76,6 +80,11 @@ ArticleController.index = function(req, res) {
 		var options = req.query || {};
 		if (options.category_id) {
 			options.category_id = new ObjectId(options.category_id);
+		}
+		if (options.name === "undefined") {
+			delete options.name;
+		} else {
+			options.name = convertToRegexFilter("name", options.name);
 		}
 		Article.find(options).exec(options, function(error, articles){
 			if (error) {

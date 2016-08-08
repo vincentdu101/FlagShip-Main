@@ -17,9 +17,12 @@ export class ProjectsIndexComponent {
 	constructor(private projectService: ProjectService,
 				private config: Config,
 				private router: Router) {
-		this.projectService.getAllProjects().subscribe((data) => {
+		this.getProjects();
+	}
+
+	private getProjects(options = { name: undefined }) {
+		this.projectService.getAllProjects(options).subscribe((data) => {
 			this.projects = data.json();
-			console.log(this.projects);
 		});
 	}
 
@@ -29,6 +32,10 @@ export class ProjectsIndexComponent {
 
 	public editProject(project): void {
 		this.router.navigate(["/projects/edit/" + project._id, {}]);
+	}
+
+	public searchForName(event) {
+		this.getProjects({ name: event.target.value });
 	}
 
 }

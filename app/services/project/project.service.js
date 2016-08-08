@@ -50,8 +50,10 @@ var ProjectService = (function () {
         urlParams.options = new http_1.RequestOptions({ headers: urlParams.headers });
         return urlParams;
     };
-    ProjectService.prototype.getAllProjects = function () {
-        return this.http.get("http://localhost:8080/articles?category_id=56d2368fbefe83262d3e14e4");
+    ProjectService.prototype.getAllProjects = function (options) {
+        if (options === void 0) { options = { name: undefined }; }
+        var category_id = "56d2368fbefe83262d3e14e4";
+        return this.http.get("http://localhost:8080/articles?category_id=" + category_id + "&name=" + options.name);
     };
     ProjectService.prototype.createProject = function (project) {
         var _this = this;
