@@ -34,8 +34,8 @@ var EditProjectComponent = (function () {
             });
         });
     };
-    EditProjectComponent.prototype.createProject = function () {
-        this.projectService.createProject(this.project);
+    EditProjectComponent.prototype.saveProject = function () {
+        this.projectService.saveProject(this.project);
     };
     EditProjectComponent.prototype.toggleDropdown = function (category) {
         this.project.category = category.name;

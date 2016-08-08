@@ -38,18 +38,32 @@ export class ProjectService {
 		return str.join("&");
 	}	
 
+	private generatePostUrlParams(project): any {
+		project.category_id = this.categoryService.findCategoryByName(project.category)._id;
+		
+		var urlParams = {body: "", headers: undefined, options: undefined};
+		urlParams.body = JSON.stringify(project);
+		urlParams.headers = new Headers({ "Content-Type": "application/json" });
+		urlParams.options = new RequestOptions({ headers: urlParams.headers });
+
+		return urlParams;
+	} 
+
 	public getAllProjects() {
 		return this.http.get("http://localhost:8080/articles?category_id=56d2368fbefe83262d3e14e4");
 	}
 
 	public createProject(project) {
-		project.category_id = this.categoryService.findCategoryByName("Projects")._id;
-		
-		let body = JSON.stringify(project);
-		let headers = new Headers({ "Content-Type": "application/json" });
-		let options = new RequestOptions({ headers: headers });
-			
-		this.http.post("http://localhost:8080/articles", body, options)
+		var params = this.generatePostUrlParams(project);
+		this.http.post("http://localhost:8080/articles", params.body, params.options)
+			.subscribe(data => {
+				this.router.navigate(["/projects"]);
+			});
+	}
+
+	public saveProject(project) {
+		var params = this.generatePostUrlParams(project);
+		this.http.put("http://localhost:8080/articles/" + project._id, params.body, params.options)
 			.subscribe(data => {
 				this.router.navigate(["/projects"]);
 			});

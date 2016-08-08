@@ -35,8 +35,8 @@ export class EditProjectComponent {
 		});
 	}
 
-	public createProject(): void {
-		this.projectService.createProject(this.project);
+	public saveProject(): void {
+		this.projectService.saveProject(this.project);
 	}
 
 	public toggleDropdown(category): void {

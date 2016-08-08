@@ -42,16 +42,29 @@ var ProjectService = (function () {
         }
         return str.join("&");
     };
+    ProjectService.prototype.generatePostUrlParams = function (project) {
+        project.category_id = this.categoryService.findCategoryByName(project.category)._id;
+        var urlParams = { body: "", headers: undefined, options: undefined };
+        urlParams.body = JSON.stringify(project);
+        urlParams.headers = new http_1.Headers({ "Content-Type": "application/json" });
+        urlParams.options = new http_1.RequestOptions({ headers: urlParams.headers });
+        return urlParams;
+    };
     ProjectService.prototype.getAllProjects = function () {
         return this.http.get("http://localhost:8080/articles?category_id=56d2368fbefe83262d3e14e4");
     };
     ProjectService.prototype.createProject = function (project) {
         var _this = this;
-        project.category_id = this.categoryService.findCategoryByName("Projects")._id;
-        var body = JSON.stringify(project);
-        var headers = new http_1.Headers({ "Content-Type": "application/json" });
-        var options = new http_1.RequestOptions({ headers: headers });
-        this.http.post("http://localhost:8080/articles", body, options)
+        var params = this.generatePostUrlParams(project);
+        this.http.post("http://localhost:8080/articles", params.body, params.options)
+            .subscribe(function (data) {
+            _this.router.navigate(["/projects"]);
+        });
+    };
+    ProjectService.prototype.saveProject = function (project) {
+        var _this = this;
+        var params = this.generatePostUrlParams(project);
+        this.http.put("http://localhost:8080/articles/" + project._id, params.body, params.options)
             .subscribe(function (data) {
             _this.router.navigate(["/projects"]);
         });
