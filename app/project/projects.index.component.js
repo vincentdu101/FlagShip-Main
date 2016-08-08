@@ -12,11 +12,13 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var project_service_1 = require("../services/project/project.service");
 var config_1 = require("../services/configuration/config");
+var router_1 = require("@angular/router");
 var ProjectsIndexComponent = (function () {
-    function ProjectsIndexComponent(projectService, config) {
+    function ProjectsIndexComponent(projectService, config, router) {
         var _this = this;
         this.projectService = projectService;
         this.config = config;
+        this.router = router;
         this.projects = [];
         this.projectService.getAllProjects().subscribe(function (data) {
             _this.projects = data.json();
@@ -26,13 +28,16 @@ var ProjectsIndexComponent = (function () {
     ProjectsIndexComponent.prototype.outputImagePath = function (image) {
         return this.config.imagePath + "/" + image;
     };
+    ProjectsIndexComponent.prototype.editProject = function (project) {
+        this.router.navigate(["/projects/edit/" + project._id, {}]);
+    };
     ProjectsIndexComponent = __decorate([
         core_1.Component({
             selector: "projects-index",
             templateUrl: "./app/project/projects.index.component.html",
             directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [project_service_1.ProjectService, config_1.Config])
+        __metadata('design:paramtypes', [project_service_1.ProjectService, config_1.Config, router_1.Router])
     ], ProjectsIndexComponent);
     return ProjectsIndexComponent;
 }());

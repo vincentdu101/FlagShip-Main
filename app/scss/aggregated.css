@@ -90,3 +90,14 @@ footer {
   min-height: 200px;
   max-height: 200px;
   overflow-y: scroll; }
+
+.project-card {
+  height: 275px; }
+  .project-card img {
+    height: 100px;
+    margin: 0 auto; }
+  .project-card-title {
+    text-align: center; }
+  .project-card-description {
+    height: 75px;
+    overflow-y: auto; }

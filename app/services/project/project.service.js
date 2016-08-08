@@ -56,6 +56,9 @@ var ProjectService = (function () {
             _this.router.navigate(["/projects"]);
         });
     };
+    ProjectService.prototype.getProject = function (id) {
+        return this.http.get("http://localhost:8080/articles/" + id);
+    };
     ProjectService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, category_service_1.CategoryService, router_1.Router])

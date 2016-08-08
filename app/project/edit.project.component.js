@@ -13,33 +13,45 @@ var common_1 = require("@angular/common");
 var project_service_1 = require("../services/project/project.service");
 var category_service_1 = require("../services/category/category.service");
 var dropdown_1 = require("ng2-bootstrap/components/dropdown");
-var NewProjectComponent = (function () {
-    function NewProjectComponent(projectService, categoryService) {
+var router_1 = require("@angular/router");
+var EditProjectComponent = (function () {
+    function EditProjectComponent(projectService, categoryService, router, route) {
         this.projectService = projectService;
         this.categoryService = categoryService;
+        this.router = router;
+        this.route = route;
         this.project = { name: "", description: "", image: "", body: "", category: "Projects" };
         this.categories = [];
         this.content = '<p>Hello <strong>World !</strong></p>';
         this.categories = this.categoryService.getCategories();
     }
-    NewProjectComponent.prototype.createProject = function () {
+    EditProjectComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.projectService.getProject(params.id).subscribe(function (data) {
+                _this.project = data.json();
+                _this.project.category = _this.categoryService.findCategoryById(_this.project.category_id).name;
+            });
+        });
+    };
+    EditProjectComponent.prototype.createProject = function () {
         this.projectService.createProject(this.project);
     };
-    NewProjectComponent.prototype.toggleDropdown = function (category) {
+    EditProjectComponent.prototype.toggleDropdown = function (category) {
         this.project.category = category.name;
     };
-    NewProjectComponent.prototype.checkActiveCategory = function (category) {
+    EditProjectComponent.prototype.checkActiveCategory = function (category) {
         return { "active": category.name === this.project.name };
     };
-    NewProjectComponent = __decorate([
+    EditProjectComponent = __decorate([
         core_1.Component({
-            templateUrl: "./app/project/new.project.component.html",
-            selector: "new-project",
+            templateUrl: "./app/project/edit.project.component.html",
+            selector: "edit-project",
             directives: [common_1.FORM_DIRECTIVES, dropdown_1.DROPDOWN_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [project_service_1.ProjectService, category_service_1.CategoryService])
-    ], NewProjectComponent);
-    return NewProjectComponent;
+        __metadata('design:paramtypes', [project_service_1.ProjectService, category_service_1.CategoryService, router_1.Router, router_1.ActivatedRoute])
+    ], EditProjectComponent);
+    return EditProjectComponent;
 }());
-exports.NewProjectComponent = NewProjectComponent;
-//# sourceMappingURL=new.project.component.js.map
+exports.EditProjectComponent = EditProjectComponent;
+//# sourceMappingURL=edit.project.component.js.map

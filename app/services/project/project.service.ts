@@ -55,4 +55,8 @@ export class ProjectService {
 			});
 	}
 
+	public getProject(id: string) {
+		return this.http.get("http://localhost:8080/articles/" + id);
+	}
+
 }

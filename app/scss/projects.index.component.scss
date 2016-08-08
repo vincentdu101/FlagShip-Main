@@ -1,0 +1,17 @@
+.project-card {
+	height: 275px;
+
+	& img {
+		height: 100px;
+		margin: 0 auto;
+	}
+
+	&-title {
+		text-align: center;
+	}
+
+	&-description {
+		height: 75px;
+		overflow-y: auto;
+	}
+}
