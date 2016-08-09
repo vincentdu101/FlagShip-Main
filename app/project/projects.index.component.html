@@ -16,7 +16,7 @@
 			<img src="{{outputImagePath(project.image)}}" class="img-responsive" *ngIf="project.image" />
 			<div class="project-card-description">{{project.description}}</div>
 			<button class="btn btn-primary" (click)="editProject(project)">Edit</button>
-			<button class="btn btn-default">View</button>
+			<button class="btn btn-default" (click)="viewProject(project)">View</button>
 		</div>
 	</div>
 

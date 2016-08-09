@@ -34,6 +34,9 @@ var ProjectsIndexComponent = (function () {
     ProjectsIndexComponent.prototype.editProject = function (project) {
         this.router.navigate(["/projects/edit/" + project._id, {}]);
     };
+    ProjectsIndexComponent.prototype.viewProject = function (project) {
+        this.router.navigate(["/projects/view/" + project._id, {}]);
+    };
     ProjectsIndexComponent.prototype.searchForName = function (event) {
         this.getProjects({ name: event.target.value });
     };

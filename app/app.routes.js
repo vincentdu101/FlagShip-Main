@@ -5,12 +5,14 @@ var resources_component_1 = require("./resources/resources.component");
 var projects_index_component_1 = require("./project/projects.index.component");
 var new_project_component_1 = require("./project/new.project.component");
 var edit_project_component_1 = require("./project/edit.project.component");
+var view_project_component_1 = require("./project/view.project.component");
 var routes = [
     { path: "", component: home_component_1.HomeComponent },
     { path: "resources", component: resources_component_1.ResourcesComponent },
     { path: "projects", component: projects_index_component_1.ProjectsIndexComponent },
     { path: "projects/new", component: new_project_component_1.NewProjectComponent },
-    { path: "projects/edit/:id", component: edit_project_component_1.EditProjectComponent }
+    { path: "projects/edit/:id", component: edit_project_component_1.EditProjectComponent },
+    { path: "projects/view/:id", component: view_project_component_1.ViewProjectComponent }
 ];
 exports.APP_ROUTER_PROVIDERS = [
     router_1.provideRouter(routes)

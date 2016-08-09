@@ -34,6 +34,10 @@ export class ProjectsIndexComponent {
 		this.router.navigate(["/projects/edit/" + project._id, {}]);
 	}
 
+	public viewProject(project): void {
+		this.router.navigate(["/projects/view/" + project._id, {}]);
+	}
+
 	public searchForName(event) {
 		this.getProjects({ name: event.target.value });
 	}
