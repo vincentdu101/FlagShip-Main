@@ -1,71 +1,16 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand">Brand</a>
-    </div>
+<div class="brand">
+  <a>Vincent Du</a>
+</div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a>Link <span class="sr-only">(current)</span></a></li>
-        <li>
-        	<a (click)="goToPage('Projects')">Project</a>
-        </li>
-        <!-- <li class="dropdown" *ngIf="user"> -->
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New Resources <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a (click)="goToPage('/projects/new')">New Project</a></li>
-            <li><a >New Category</a></li>
-            <li><a >New Skill</a></li>
-          </ul>
+<section class="navigation container-fluid">
+  <div class="nav-container">
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" (click)="triggerSlideToggle()"><span></span></a></div>
+      <ul class="nav-list">
+        <li *ngFor="let item of bars">
+            <a>{{item.name}}</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!user">
-          <a href="#" data-toggle="modal" data-target=".login-modal">Login</a>
-        </li>
-        <li class="dropdown" *ngIf="user">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a (click)="goToPage('/resources')">Edit Resources</a></li>
-            <li><a >Edit Views</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a >Profile Settings</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-<div class="modal fade login-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Login</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
-            <input class="form-control" id="exampleInputEmail1" placeholder="Email" [(ngModel)]="login.username">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="login.password">
-          </div>
-          <button (click)="loginUser()" class="btn btn-default">Submit</button>
-        </form>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </nav>
+  </div>
+</section>

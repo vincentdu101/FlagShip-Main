@@ -15,7 +15,7 @@
 }
 
 .slider {
-    background: rgba(201, 210, 209, 0.2);
+    background: white;
 }
 
 .top-buffer {
@@ -28,7 +28,7 @@
 }
 
 .navbar-default {
-	background-color: #dfe2e2;
+	background-color: white;
 
 	& .navbar-nav > li > a {
 		color: black;
@@ -106,12 +106,12 @@
 }
 
 footer {
-	background-color: #dfe2e2;
+	background-color: white;
 
 	.footer-section {
 		height: 200px; 
 		border: 1px solid black;
-		background-color: #dfe2e2;
+		background-color: white;
 	}
 }
 
