@@ -1,15 +1,12 @@
 import {Component} from "@angular/core";
-import {FORM_DIRECTIVES} from "@angular/common";
 import {ProjectService} from "../services/project/project.service";
 import {CategoryService} from "../services/category/category.service";
-import {DROPDOWN_DIRECTIVES} from "ng2-bootstrap/components/dropdown";
 import {Router, ActivatedRoute} from "@angular/router";
 
 
 @Component({
-	templateUrl: "./app/project/view.project.component.html",
-	selector: "view-project",
-	directives: [FORM_DIRECTIVES, DROPDOWN_DIRECTIVES]
+	templateUrl: "./view.project.component.html",
+	selector: "view-project"
 })
 
 export class ViewProjectComponent {

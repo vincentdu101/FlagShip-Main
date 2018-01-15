@@ -1,16 +1,12 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
-import {FORM_DIRECTIVES, NgIf} from "@angular/common";
-import {Http, HTTP_PROVIDERS} from "@angular/http";
+import {Http} from "@angular/http";
 import {Session} from "../services/configuration/session.service";
-import {DROPDOWN_DIRECTIVES} from "ng2-bootstrap/components/dropdown";
 
 
 @Component({
 	selector: "header",
-	templateUrl: "./app/header/header.component.html",
-	providers: [HTTP_PROVIDERS, Session],
-	directives: [FORM_DIRECTIVES, NgIf, DROPDOWN_DIRECTIVES]
+	templateUrl: "./header.component.html"
 })
 
 export class HeaderComponent {
@@ -30,11 +26,11 @@ export class HeaderComponent {
 	}
 
 	private hideDropdownClick(): void {
-		$("html").click(() => {
-			for (var i = 0; i < this.bars.length; i++) {
-				this.bars[i].active = false;
-			}
-		});
+		// $("html").click(() => {
+		// 	for (var i = 0; i < this.bars.length; i++) {
+		// 		this.bars[i].active = false;
+		// 	}
+		// });
 	}
 
 	public goToPage(page: string, config = {}) {
@@ -54,7 +50,7 @@ export class HeaderComponent {
 	}
 
 	public triggerSlideToggle(): void {
-		$("nav ul").slideToggle();
+		// $("nav ul").slideToggle();
 	}
 
 }

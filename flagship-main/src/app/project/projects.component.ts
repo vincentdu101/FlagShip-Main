@@ -1,12 +1,9 @@
 import {Component} from "@angular/core";
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from "@angular/common";
 import {PortfolioService} from "../services/portfolio/portfolio.service";
-import {SELECT_DIRECTIVES} from "ng2-select/ng2-select";
 
 @Component({
 	selector: "projects",
-	templateUrl: "./app/project/projects.component.html",
-	directives: [SELECT_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
+	templateUrl: "./projects.component.html"
 })
 
 export class ProjectsComponent {

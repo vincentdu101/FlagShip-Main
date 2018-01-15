@@ -1,20 +1,23 @@
 import {Component} from "@angular/core";
-import {FORM_DIRECTIVES} from "@angular/common";
 import {ProjectService} from "../services/project/project.service";
 import {CategoryService} from "../services/category/category.service";
-import {DROPDOWN_DIRECTIVES} from "ng2-bootstrap/components/dropdown";
 import {Router, ActivatedRoute} from "@angular/router";
 
 
 @Component({
-	templateUrl: "./app/project/edit.project.component.html",
-	selector: "edit-project",
-	directives: [FORM_DIRECTIVES, DROPDOWN_DIRECTIVES]
+	templateUrl: "./edit.project.component.html",
+	selector: "edit-project"
 })
-
 export class EditProjectComponent {
 
-	public project = { name: "", description: "", image: "", body: "", category: "Projects" };
+	public project = { 
+		name: "", 
+		description: "", 
+		image: "", 
+		body: "", 
+		category: "Projects", 
+		category_id: ""
+	};
 	public content;
 	public categories = [];
 

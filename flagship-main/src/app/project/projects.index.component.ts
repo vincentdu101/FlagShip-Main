@@ -1,13 +1,11 @@
 import {Component} from "@angular/core";
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from "@angular/common";
 import {ProjectService} from "../services/project/project.service";
 import {Config} from "../services/configuration/config";
 import {Router} from "@angular/router";
 
 @Component({
 	selector: "projects-index",
-	templateUrl: "./app/project/projects.index.component.html",
-	directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
+	templateUrl: "./projects.index.component.html"
 })
 
 export class ProjectsIndexComponent {
