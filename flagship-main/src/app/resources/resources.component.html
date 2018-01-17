@@ -29,7 +29,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="#project of projects">
+				<tr *ngFor="let project of projects">
 					<td>{{project._id}}</td>
 					<td>{{project.name}}</td>
 					<!-- <td>{{project.description}}</td> -->
@@ -54,7 +54,7 @@
 	</div>
 
 	<div class="row resources-grid">
-		<div class="panel panel-default col-xs-12 col-sm-6 resources-card" *ngFor="#project of projects">
+		<div class="panel panel-default col-xs-12 col-sm-6 resources-card" *ngFor="let project of projects">
 			<div class="row">
 				<div class="col-xs-3">ID</div>
 				<div class="col-xs-9">{{project._id}}</div>

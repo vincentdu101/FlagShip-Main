@@ -5,13 +5,14 @@ import {FormsModule} from "@angular/forms";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {NgSelectModule} from "@ng-select/ng-select";
+import {HttpModule} from "@angular/http";
+import { HttpClientModule } from '@angular/common/http'; 
 
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {CarouselComponent} from "./carousel/carousel.component";
 import {SkillsComponent} from "./skills/skills.component";
 import {ResourcesComponent} from "./resources/resources.component";
-import {PlaygroundComponent} from "./playground/playground.component";
 import {HomeComponent} from "./home/home.component";
 import {ProjectsComponent} from "./project/projects.component";
 import {CategoryService} from "./services/category/category.service";
@@ -20,7 +21,7 @@ import {CarouselService} from "./services/carousel/carousel.service";
 import {SkillsService} from "./services/skills/skills.service";
 import {PortfolioService} from "./services/portfolio/portfolio.service";
 import {Config} from "./services/configuration/config";
-import {Http} from "@angular/http";
+import {Session} from "./services/configuration/session.service";
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -39,8 +40,7 @@ const routes: Routes = [
 		SkillsComponent, 
 		CarouselComponent,
 		ProjectsComponent,
-		ResourcesComponent,
-		PlaygroundComponent
+		ResourcesComponent
 	],
 	imports: [
 		BrowserModule,
@@ -49,7 +49,9 @@ const routes: Routes = [
 		AppRoutingModule,
 		RouterModule.forRoot(routes),
 		FormsModule,
-		NgSelectModule
+		NgSelectModule,
+		HttpModule,
+		HttpClientModule
 	],
 	providers: [
 		CategoryService,
@@ -58,7 +60,7 @@ const routes: Routes = [
 		SkillsService,
 		PortfolioService,
 		Config,
-		Http
+		Session
 	],
 	bootstrap: [AppComponent],
 	exports: [RouterModule]

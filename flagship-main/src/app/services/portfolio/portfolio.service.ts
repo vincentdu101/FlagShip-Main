@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {CategoryService} from "../category/category.service";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class PortfolioService {
@@ -11,7 +12,11 @@ export class PortfolioService {
 
 	public getPortfolio() {
 		var slideCategory = this.categoryService.findCategoryByName("Portfolio");
-		return this.http.get("http://localhost:8080/articles?category_id=" + slideCategory._id);
+		if (!!slideCategory) {
+			return this.http.get("http://localhost:8080/articles?category_id=" + slideCategory._id);
+		} else {
+			return Observable.empty<any>();
+		}
 	}
 
 	public parsePortfolio(portfolio: Array<any>) {
