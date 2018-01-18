@@ -9,7 +9,6 @@ import {CategoryService} from "./services/category/category.service";
 export class AppComponent {
 	
 	constructor(private categoryService: CategoryService) {
-		this.categoryService.loadAllCategories();
 	}
 
 }

@@ -1,12 +1,19 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
+import {Observable, Observer} from "rxjs";
 
 @Injectable() 
 export class CategoryService {
 
 	private categories = [];
+	public categoryObservable: Observable<any>;
+	public categoryObserver: Observer<any>;
 
 	constructor(private http: Http) {
+		this.categoryObservable = Observable.create((observer) => {
+			this.categoryObserver = observer;
+		});
+		this.loadAllCategories();
 	}
 
 	private TYPE = {
@@ -24,6 +31,7 @@ export class CategoryService {
 		this.http.get("http://localhost:8080/categories")
 			.subscribe((data) => {
 				this.categories = data.json();
+				this.categoryObserver.next(this.categories);
 			});
 	}
 

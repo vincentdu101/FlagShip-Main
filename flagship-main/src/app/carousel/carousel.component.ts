@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {CarouselService} from "../services/carousel/carousel.service";
 
 @Component({
@@ -7,15 +7,19 @@ import {CarouselService} from "../services/carousel/carousel.service";
     styleUrls: ["./carousel.component.scss"]
 })
 
-export class CarouselComponent {
+export class CarouselComponent implements OnInit {
 
     public intervalChange:number = 5000;
     public slides: Array<any> = [];
 
     public constructor(private carouselService: CarouselService) {
-        this.carouselService.getSlides().subscribe((data) => {
+
+    }
+
+    ngOnInit() {
+        this.carouselService.carouselObservable.subscribe((data) => {
             this.slides = data.json();
-        })
+        });
     }
 	
 }
