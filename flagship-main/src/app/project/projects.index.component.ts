@@ -5,7 +5,8 @@ import {Router} from "@angular/router";
 
 @Component({
 	selector: "projects-index",
-	templateUrl: "./projects.index.component.html"
+	templateUrl: "./projects.index.component.html",
+	styleUrls: ["./projects.index.component.scss"]
 })
 
 export class ProjectsIndexComponent {

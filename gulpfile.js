@@ -11,7 +11,7 @@ var componentPaths = "./flagship-main/src/app/**/*.scss";
 gulp.task("sass-app", function(){
 	return gulp.src(aggregatedPath)
 		.pipe(sass().on("error", sass.logError))
-		.pipe(gulp.dest("app/scss"))
+		.pipe(gulp.dest("app/scss"));
 });
 
 gulp.task("sass-components", function() {

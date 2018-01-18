@@ -3,7 +3,8 @@ import {CarouselService} from "../services/carousel/carousel.service";
 
 @Component({
 	selector: "carousel-setup",
-	templateUrl: "./carousel.component.html"
+	templateUrl: "./carousel.component.html",
+    styleUrls: ["./carousel.component.scss"]
 })
 
 export class CarouselComponent {

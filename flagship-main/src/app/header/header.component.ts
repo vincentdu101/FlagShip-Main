@@ -6,7 +6,8 @@ import {Session} from "../services/configuration/session.service";
 
 @Component({
 	selector: "header",
-	templateUrl: "./header.component.html"
+	templateUrl: "./header.component.html",
+	styleUrls: ["./header.component.scss"]
 })
 
 export class HeaderComponent {
