@@ -1,18 +1,15 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
-import {Observable, Observer} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 @Injectable() 
 export class CategoryService {
 
 	private categories = [];
-	public categoryObservable: Observable<any>;
-	public categoryObserver: Observer<any>;
+	public categorySubject: Subject<any>;
 
 	constructor(private http: Http) {
-		this.categoryObservable = Observable.create((observer) => {
-			this.categoryObserver = observer;
-		});
+		this.categorySubject = new Subject();
 		this.loadAllCategories();
 	}
 
@@ -28,11 +25,13 @@ export class CategoryService {
 	}	
 
 	public loadAllCategories(): void {
-		this.http.get("http://localhost:8080/categories")
-			.subscribe((data) => {
+		let observable = Observable.create((observer) => {
+			this.http.get("http://localhost:8080/categories").subscribe((data) => {
 				this.categories = data.json();
-				this.categoryObserver.next(this.categories);
+				this.categorySubject.next(this.categories);
 			});
+		});
+		observable.subscribe();
 	}
 
 	public findCategoryById(id: string) {

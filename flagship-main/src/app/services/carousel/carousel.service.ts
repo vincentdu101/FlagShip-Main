@@ -7,21 +7,21 @@ import {Observable, Observer} from "rxjs";
 export class CarouselService {
 
 	private carouselObserver: Observer<any>;
+	private slideUrl: string = "http://localhost:8080/articles?category_id=";
 	public carouselObservable: Observable<any>;
 
 	constructor(private http: Http,
 				private categoryService: CategoryService) {
-		this.carouselObservable = Observable.create((observer) => {
-			this.carouselObserver = observer;
-		});
 	}
 
-	public getSlides(): void {
-		this.categoryService.categoryObservable.subscribe(() => {
-			var slideCategory = this.categoryService.findCategoryByName("Slideshow");
-			if (!!slideCategory) {
-				this.http.get("http://localhost:8080/articles?category_id=" + slideCategory._id);
-			}
+	public getSlides(): Observable<any> {
+		return Observable.create((observer) => {
+			this.categoryService.categorySubject.subscribe(() => {
+				var slideCategory = this.categoryService.findCategoryByName("Slideshow");
+				this.http.get(this.slideUrl + slideCategory._id).subscribe((data) => {
+					observer.next(data);
+				});
+			});
 		});
 	}
 

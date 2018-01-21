@@ -17,7 +17,7 @@ export class CarouselComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.carouselService.carouselObservable.subscribe((data) => {
+        this.carouselService.getSlides().subscribe((data) => {
             this.slides = data.json();
         });
     }
