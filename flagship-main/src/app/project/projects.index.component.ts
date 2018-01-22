@@ -21,7 +21,7 @@ export class ProjectsIndexComponent {
 
 	private getProjects(options = { name: undefined }) {
 		this.projectService.getAllProjects(options).subscribe((data) => {
-			this.projects = data.json();
+			// this.projects = data.json();
 		});
 	}
 

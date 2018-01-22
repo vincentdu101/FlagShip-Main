@@ -1,23 +1,18 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
+import {Observable, Subject} from "rxjs";
 import {Observer} from "rxjs/Observer";
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/startWith';
 
 
 @Injectable()
-export class Session {
+export class SessionService {
 
-	public sessionObservable;
-	private sessionObserver;
 	private currentUser; 
+	public sessionSubject: Subject<any>;
 
-	constructor(private http: Http) {	
-		this.sessionObservable = new Observable((observer) => {
-			this.sessionObserver = observer;
-		}).share();
-	}
+	constructor(private http: HttpClient) {}
 
 	private asyncRequestParse(data) {
 		var str = [];
@@ -36,16 +31,18 @@ export class Session {
 		return str.join("&");
 	}
 
-	public loginUser(formData: {username: {}, password: {}}) {
+	public loginUser(formData: {username: string, password: string}): Observable<any> {
 		if (formData.username && formData.password) {
-			this.http.post("http://localhost:8080/login", this.asyncRequestParse(formData))
-				.subscribe(data => {
+			return Observable.create((observer) => {
+				this.http.post("http://localhost:8080/login", formData).subscribe(data => {
 					debugger;
-					// this.currentUser = JSON.parse(data._body);
-					this.sessionObserver.next({ success: this.currentUser });
+					this.currentUser = data;
+					observer.next({success: this.currentUser});
+					this.sessionSubject.next({ success: this.currentUser });
 				});
+			});
 		} else {
-			this.sessionObserver.next({ error: "missing username or password" });
+			return Observable.create((observer) => { observer.next({error: "Form not complete"})});
 		}
 	}	
 

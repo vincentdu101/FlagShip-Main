@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {CategoryService} from "./services/category/category.service";
 
 @Component({
 	selector: 'app-root',
@@ -8,7 +7,7 @@ import {CategoryService} from "./services/category/category.service";
 })
 export class AppComponent {
 	
-	constructor(private categoryService: CategoryService) {
+	constructor() {
 	}
 
 }

@@ -18,7 +18,8 @@ export class CarouselComponent implements OnInit {
 
     ngOnInit() {
         this.carouselService.getSlides().subscribe((data) => {
-            this.slides = data.json();
+            // this.slides = data.json();
+            this.slides = data;
         });
     }
 	

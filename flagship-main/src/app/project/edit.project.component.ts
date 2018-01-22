@@ -32,7 +32,7 @@ export class EditProjectComponent {
 	ngOnInit() {
 		this.route.params.subscribe(params => {
 			this.projectService.getProject(params.id).subscribe(data => {
-				this.project = data.json();
+				// this.project = data;
 				this.project.category = this.categoryService.findCategoryById(this.project.category_id).name;
 			});
 		});

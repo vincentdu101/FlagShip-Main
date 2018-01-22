@@ -1,8 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, TemplateRef, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
-import {Http} from "@angular/http";
-import {Session} from "../services/configuration/session.service";
-
+import {SessionService} from "../services/configuration/session.service";
+import {BsModalService} from "ngx-bootstrap/modal";
+import {BsModalRef} from "ngx-bootstrap/modal/bs-modal-ref.service";
+import {FormGroup, FormControl} from "@angular/forms";
 
 @Component({
 	selector: "header",
@@ -10,9 +11,9 @@ import {Session} from "../services/configuration/session.service";
 	styleUrls: ["./header.component.scss"]
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-	public login = { username: "", password: "" };
+	private modalRef: BsModalRef;
 	public user = {};
 	public mobileToggle = false;
 	public bars = [
@@ -20,10 +21,19 @@ export class HeaderComponent {
 		{ name: "About", url: "/about", active: false },
 		{ name: "Portfolio", url: "/projects", dropdown: [], active: false }
 	];
+	public loginForm: FormGroup;
 	
-	constructor(private router: Router, private http: Http,
-				private Session: Session) {
+	constructor(private router: Router, 
+				private sessionService: SessionService, 
+				private bsModalService: BsModalService) {
 		this.hideDropdownClick();
+	}
+
+	ngOnInit() {
+		this.loginForm = new FormGroup({
+			username: new FormControl(),
+			password: new FormControl()
+		});
 	}
 
 	private hideDropdownClick(): void {
@@ -39,19 +49,24 @@ export class HeaderComponent {
 	}
 
 	public loginUser(): void {
-		let formData = { username: this.login.username, password: this.login.password };
-		this.Session.loginUser(formData);
-		let sessionObservable = this.Session.sessionObservable.subscribe((data) => {
+		this.sessionService.loginUser(this.loginForm.value).subscribe((data) => {
 			if (data.success) {
 				this.user = data.success;
-				sessionObservable.unsubscribe();
-				// $(".login-modal").modal({ show: false });
+				this.modalRef.hide();
 			}
 		});
 	}
 
 	public triggerSlideToggle(): void {
 		// $("nav ul").slideToggle();
+	}
+
+	public openLoginModal(login: TemplateRef<any>): void {
+		this.modalRef = this.bsModalService.show(login);
+	}
+
+	public closeLoginModal(): void {
+		this.modalRef.hide();
 	}
 
 }

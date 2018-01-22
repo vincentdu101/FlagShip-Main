@@ -5,9 +5,10 @@ import {FormsModule} from "@angular/forms";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {NgSelectModule} from "@ng-select/ng-select";
-import {HttpModule} from "@angular/http";
 import { HttpClientModule } from '@angular/common/http'; 
 import { AppRoutingModule } from './/app-routing.module';
+import {ModalModule} from "ngx-bootstrap/modal";
+import {ReactiveFormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
@@ -29,7 +30,7 @@ import {CarouselService} from "./services/carousel/carousel.service";
 import {SkillsService} from "./services/skills/skills.service";
 import {PortfolioService} from "./services/portfolio/portfolio.service";
 import {Config} from "./services/configuration/config";
-import {Session} from "./services/configuration/session.service";
+import {SessionService} from "./services/configuration/session.service";
 
 const routes: Routes = [
 	{path: "", component: HomeComponent}
@@ -55,8 +56,9 @@ const routes: Routes = [
 		RouterModule.forRoot(routes),
 		FormsModule,
 		NgSelectModule,
-		HttpModule,
-		HttpClientModule
+		HttpClientModule,
+		ModalModule.forRoot(),
+		ReactiveFormsModule
 	],
 	providers: [
 		CategoryService,
@@ -65,7 +67,7 @@ const routes: Routes = [
 		SkillsService,
 		PortfolioService,
 		Config,
-		Session
+		SessionService
 	],
 	bootstrap: [AppComponent],
 	exports: [RouterModule]

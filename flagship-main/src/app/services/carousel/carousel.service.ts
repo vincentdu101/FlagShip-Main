@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {HttpClient} from "@angular/common/http";
 import {CategoryService} from "../category/category.service";
 import {Observable, Observer} from "rxjs";
 
@@ -10,7 +10,7 @@ export class CarouselService {
 	private slideUrl: string = "http://localhost:8080/articles?category_id=";
 	public carouselObservable: Observable<any>;
 
-	constructor(private http: Http,
+	constructor(private http: HttpClient,
 				private categoryService: CategoryService) {
 	}
 

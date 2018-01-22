@@ -23,7 +23,7 @@ export class ViewProjectComponent {
 	ngOnInit() {
 		this.route.params.subscribe(params => {
 			this.projectService.getProject(params.id).subscribe(data => {
-				this.project = data.json();
+				// this.project = data.json();
 			});
 		});
 	}

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
-import {Http, RequestOptions, Headers} from "@angular/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs/Observer";
 import 'rxjs/add/operator/share';
@@ -13,7 +13,7 @@ export class ProjectService {
 	public projectObservable;
 	private projectObserver;
 
-	constructor(private http: Http,
+	constructor(private http: HttpClient,
 				private categoryService: CategoryService,
 				private router: Router) {
 		this.projectObservable = new Observable((observer) => {
@@ -41,12 +41,12 @@ export class ProjectService {
 	private generatePostUrlParams(project): any {
 		project.category_id = this.categoryService.findCategoryByName(project.category)._id;
 		
-		var urlParams = {body: "", headers: undefined, options: undefined};
-		urlParams.body = JSON.stringify(project);
-		urlParams.headers = new Headers({ "Content-Type": "application/json" });
-		urlParams.options = new RequestOptions({ headers: urlParams.headers });
+		// var urlParams = {body: "", headers: undefined, options: undefined};
+		// urlParams.body = JSON.stringify(project);
+		// urlParams.headers = new Headers({ "Content-Type": "application/json" });
+		// urlParams.options = new RequestOptions({ headers: urlParams.headers });
 
-		return urlParams;
+		// return urlParams;
 	} 
 
 	public getAllProjects(options = {name: undefined}) {
