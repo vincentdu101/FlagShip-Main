@@ -125,6 +125,7 @@ UserController.loginSuccess = function(req, res) {
 };
 
 UserController.loginFailure = function(req, res) {
+	console.log("login failure");
 	debugger;
 };
 

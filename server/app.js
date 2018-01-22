@@ -4,6 +4,7 @@ var cors = require("cors");
 var app = express();
 // var NodeSession = require("node-session");
 var session = require("express-session");
+var bcrypt = require("bcryptjs");
 var passport = require("passport");
 var controllers = require("./controllers");
 var database = require("./config/database");
@@ -11,6 +12,7 @@ var LocalStrategy = require("passport-local").Strategy;
 var User = require("./models/User");
 var cookieParser = require("cookie-parser");
 var redis = require("redis");
+var jwt = require('jsonwebtoken');
 var RedisStore = require("connect-redis")(session);
 var client = redis.createClient();
 
