@@ -4,23 +4,9 @@ var User = require("../models/User");
 var UserController = {};
 var notAuthenticated = "user not authenticated";
 var passport = require("passport");
-
-UserController.create = function(req, res) {
-	var user = new User({
-		username: req.body.username,
-		password: req.body.password,
-		name: req.body.name,
-		role_id: req.body.role_id
-	});
-
-	user.save(function(error, user){
-		if (error) {
-			res.status(500).json(error);
-		} else {
-			res.status(200).json(user);
-		}
-	});
-};
+var jwt = require('jsonwebtoken');
+var bcrypt = require('bcryptjs');
+var keys = require("../config/keys");
 
 UserController.get = function(req, res) {
 	if (req.isAuthenticated()) {
@@ -100,11 +86,11 @@ UserController.delete = function(req, res) {
 
 UserController.register = function(req, res) {
 	var username = req.body.username;
-	var password = req.body.password;
+	var password = bcrypt.hashSync(req.body.password, 8);
 
 	User.register(new User({
 		username: req.body.username,
-		password: req.body.password,
+		password: password,
 		name: req.body.name,
 		role_id: req.body.role_id
 	}), password, function(err, user){
@@ -112,21 +98,59 @@ UserController.register = function(req, res) {
             console.log(err.message);
         }
 
-        passport.authenticate('local')(req, res, function () {
-            res.status(200).json(user);
-        });		
+        var token = jwt.sign({id: user._id}, keys.secret, {
+        	expiresIn: 6000
+        });
+
+        res.status(200).send({auth: true, token: token});
 	});
 };
 
-UserController.loginSuccess = function(req, res) {
-	if (req.isAuthenticated()) {
-		res.status(200).json(req.user._doc);
+UserController.verifyUser = function(req, res) {
+	var token = req.headers["x-access-token"];
+	if (!token) {
+		return res.status(401).send({auth: false, message: "No token provided."});
+	} else {
+		jwt.verify(token, keys.secret, function(err, decoded) {
+			if (err) {
+				return res.status(500).send({
+					auth: false, message: "Failed to authenticate token."
+				});
+			}
+
+			User.findById(decoded.id, function(error, user){
+				if (error) {
+					res.status(500).send(error);
+				} else {
+					res.status(200).send(user);
+				}
+			});
+		});
 	}
 };
 
-UserController.loginFailure = function(req, res) {
-	console.log("login failure");
-	debugger;
+UserController.login = function(req, res) {
+	User.findOne({username: req.body.username}, function(err, user) {
+		if (err) {
+			return res.status(500).send({
+				auth: false, message: "Failed to authenticate user."
+			});
+		} else if (!user) {
+			return res.status(404).send("No user found");
+		}
+
+		var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+
+		if (!passwordIsValid) {
+			return res.status(401).send({auth: false, token: null});
+		} else {
+			var token = jwt.sign({id: user._id}, keys.secret, {
+				expiresIn: 6000
+			});
+
+			res.status(200).send({auth: true, token: token});
+		}
+	});
 };
 
 module.exports = UserController;

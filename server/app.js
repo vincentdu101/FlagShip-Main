@@ -72,7 +72,6 @@ app.post("/roles", upload.array(), controllers.role.create);
 /* User */
 app.get("/users", controllers.user.index);
 app.get("/users/:id", controllers.user.get);
-app.post("/users", upload.array(), controllers.user.create);
 app.put("/users/:id", upload.array(), controllers.user.update);
 app.delete("/users/:id", controllers.user.delete);
 
@@ -107,18 +106,10 @@ app.delete("/articles/:id", controllers.article.delete);
 /* login */
 // app.post("/login", upload.array(), controllers.user.login);
 app.post("/register", upload.array(), controllers.user.register);
-app.get("/loginSuccess", controllers.user.loginSuccess);
-app.get("/loginFailure", controllers.user.loginFailure);
-
-app.post("/login", passport.authenticate("local"), function(req, res) {
-	// res.redirect("/loginSuccess");
-	req.session.key = req.user._doc.username;
-	req.session.save(function(){
-		res.status(200).json(req.user._doc);
-	});
-});
+app.get("/me", controllers.user.verifyUser);
+app.post("/login", upload.array(), controllers.user.login);
 
 app.listen(8080, function(){
-	console.log("server app running");
+	console.log("server app running port 8080");
 });
 
