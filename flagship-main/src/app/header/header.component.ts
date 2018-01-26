@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
 	}
 
 	public goToPage(page: string, config = {}) {
-		this.router.navigate([page, config]);
+		this.router.navigate([page], config);
 	}
 
 	public loginUser(): void {
@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
 			if (data.success) {
 				this.user = data.success;
 				this.modalRef.hide();
+				this.goToPage("/resources")
 			}
 		});
 	}

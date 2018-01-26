@@ -8,3 +8,19 @@ export class Config {
 	}
 
 }
+
+export interface IUserToken {
+	auth: boolean;
+	token: string;
+}
+
+export interface IArticle {
+	_id: string,
+	name: string;
+	description: string;
+	body: string;
+	image: string;
+	__v: number;
+	category_id: string;
+	created_at: Date;
+}

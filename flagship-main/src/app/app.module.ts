@@ -33,7 +33,15 @@ import {Config} from "./services/configuration/config";
 import {SessionService} from "./services/configuration/session.service";
 
 const routes: Routes = [
-	{path: "", component: HomeComponent}
+	{path: "", component: HomeComponent},
+	{path: "resources", component: ResourcesComponent},
+	{path: "projects", component: ProjectsComponent},
+	{path: "projects/index", component: ProjectsIndexComponent},
+	{path: "projects/new", component: NewProjectComponent},
+	{path: "projects/edit/:id", component: EditProjectComponent},
+	{path: "projects/:id", component: ViewProjectComponent},
+	{path: "skills", component: SkillsComponent},
+	{path: "**", component: HomeComponent}
 ];
 
 @NgModule({
@@ -46,6 +54,10 @@ const routes: Routes = [
 		SkillsComponent, 
 		CarouselComponent,
 		ProjectsComponent,
+		ProjectsIndexComponent,
+		EditProjectComponent,
+		ViewProjectComponent,
+		NewProjectComponent,
 		ResourcesComponent
 	],
 	imports: [
