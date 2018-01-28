@@ -18,20 +18,9 @@ export class CarouselService {
 
 	public getSlides(): Observable<any> {
 		return Observable.create((observer) => {
-			var slideCategory = this.categoryService.findCategoryByName("Slideshow");
-
-			if (slideCategory) {
-				this.http.get(this.config.serverArticlesPath + slideCategory._id).subscribe((data) => {
-					observer.next(data);
-				});
-			} else {
-				this.categoryService.categorySubject.subscribe(() => {
-					slideCategory = this.categoryService.findCategoryByName("Slideshow");
-					this.http.get(this.config.serverArticlesPath + slideCategory._id).subscribe((data) => {
-						observer.next(data);
-					});
-				});
-			}
+			this.categoryService.getResources("Slideshow").subscribe((slides) => {
+				observer.next(slides);
+			});
 		});
 	}
 

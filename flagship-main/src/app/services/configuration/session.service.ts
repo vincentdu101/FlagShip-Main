@@ -18,7 +18,11 @@ export class SessionService {
 	}
 
 	private getUserToken(): IUserToken {
-		return JSON.parse(sessionStorage["userToken"]);
+		if (sessionStorage["userToken"]) {
+			return JSON.parse(sessionStorage["userToken"]);
+		} else {
+			return undefined;
+		}
 	}	
 
 	public loginUser(formData: {username: string, password: string}): Observable<any> {

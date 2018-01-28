@@ -11,12 +11,11 @@ export class PortfolioService {
 	}
 
 	public getPortfolio() {
-		var slideCategory = this.categoryService.findCategoryByName("Portfolio");
-		if (!!slideCategory) {
-			return this.http.get("http://localhost:8080/articles?category_id=" + slideCategory._id);
-		} else {
-			return Observable.empty<any>();
-		}
+		return Observable.create((observer) => {
+			this.categoryService.getResources("Portfolio").subscribe((slides) => {
+				observer.next(slides);
+			});
+		});
 	}
 
 	public parsePortfolio(portfolio: Array<any>) {

@@ -58,20 +58,9 @@ export class ProjectService {
 
 	public getAllProjects(options = {name: undefined}): Observable<any> {
 		return Observable.create((observer) => {
-			var projectCategory = this.categoryService.findCategoryByName("Projects");
-
-			if (projectCategory) {
-				this.fetchProjects(projectCategory, options).subscribe((data) => {
-					observer.next(data);
-				});
-			} else {
-				this.categoryService.categorySubject.subscribe(() => {
-					projectCategory = this.categoryService.findCategoryByName("Projects");
-					this.fetchProjects(projectCategory, options).subscribe((data) => {
-						observer.next(data);
-					});
-				});
-			}
+			this.categoryService.getResources("Projects", "&name=" + options.name).subscribe((projects) => {
+				observer.next(projects);
+			});
 		});
 	}
 

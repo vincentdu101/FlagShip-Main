@@ -12,7 +12,7 @@ export class SkillsComponent {
 
 	constructor(private skillsService: SkillsService) {
 		this.skillsService.getSkills().subscribe((data) => {
-			this.skills = data.json();
+			this.skills = data;
 		});
 	}
 

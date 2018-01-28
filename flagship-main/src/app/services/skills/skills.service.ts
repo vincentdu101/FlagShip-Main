@@ -12,12 +12,11 @@ export class SkillsService {
 	}
 
 	public getSkills() {
-		var skillCategory = this.categoryService.findCategoryByName("Skills");
-		if (!!skillCategory) {
-			return this.http.get("http://localhost:8080/articles?category_id=" + skillCategory._id);
-		} else {
-			return Observable.empty<any>();
-		}
+		return Observable.create((observer) => {
+			this.categoryService.getResources("Skills").subscribe((slides) => {
+				observer.next(slides);
+			});
+		});
 	}
 
 }

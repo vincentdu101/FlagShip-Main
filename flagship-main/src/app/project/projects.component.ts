@@ -18,7 +18,7 @@ export class ProjectsComponent {
 
 	constructor(private portfolioService: PortfolioService) {
 		this.portfolioService.getPortfolio().subscribe((data) => {
-			this.portfolio = this.initPortfolioActive(data.json());
+			this.portfolio = this.initPortfolioActive(data);
 			this.portfolioOptions = this.portfolioService.parsePortfolio(this.portfolio);
 		});
 	}

@@ -18,11 +18,11 @@
     <li class="nav-item">
       <a class="nav-link active btn" 
          (click)="openLoginModal(login)"
-         *ngIf="!user">Login</a>
+         *ngIf="!user.auth">Login</a>
 
       <a class="nav-link active btn" 
          (click)="logoutSession(login)"
-         *ngIf="!!user">Logout</a>         
+         *ngIf="user.auth">Logout</a>         
     </li>
   </ul>
 </section>
