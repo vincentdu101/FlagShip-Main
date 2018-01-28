@@ -6,16 +6,19 @@ import {Observer} from "rxjs/Observer";
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/startWith';
 import {CategoryService} from "../category/category.service";
+import {Config} from "../configuration/config";
 
 @Injectable() 
 export class ProjectService {
 
 	public projectObservable;
 	private projectObserver;
+	private 
 
 	constructor(private http: HttpClient,
 				private categoryService: CategoryService,
-				private router: Router) {
+				private router: Router,
+				private config: Config) {
 		this.projectObservable = new Observable((observer) => {
 			this.projectObserver = observer;
 		});
@@ -49,9 +52,27 @@ export class ProjectService {
 		// return urlParams;
 	} 
 
-	public getAllProjects(options = {name: undefined}) {
-		var category_id = "56d2368fbefe83262d3e14e4";
-		return this.http.get("http://localhost:8080/articles?category_id=" + category_id + "&name=" + options.name);
+	private fetchProjects(projectCategory, options): Observable<any> {
+		return this.http.get(this.config.serverArticlesPath + projectCategory._id + "&name=" + options.name);
+	}
+
+	public getAllProjects(options = {name: undefined}): Observable<any> {
+		return Observable.create((observer) => {
+			var projectCategory = this.categoryService.findCategoryByName("Projects");
+
+			if (projectCategory) {
+				this.fetchProjects(projectCategory, options).subscribe((data) => {
+					observer.next(data);
+				});
+			} else {
+				this.categoryService.categorySubject.subscribe(() => {
+					projectCategory = this.categoryService.findCategoryByName("Projects");
+					this.fetchProjects(projectCategory, options).subscribe((data) => {
+						observer.next(data);
+					});
+				});
+			}
+		});
 	}
 
 	public createProject(project) {

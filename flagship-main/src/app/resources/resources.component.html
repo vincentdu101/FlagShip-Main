@@ -32,7 +32,7 @@
 					<td>{{project._id}}</td>
 					<td>{{project.name}}</td>
 					<!-- <td>{{project.description}}</td> -->
-					<td [innerHTML]="CategoryService.determineArticleCategory(project.category_id)"></td>
+					<td [innerHTML]="getCategoryInfo(project.category_id)"></td>
 					<td>{{project.created_at}}</td>
 					<td>
 						<div class="dropdown">
@@ -68,7 +68,7 @@
 			</div> -->
 			<div class="row">
 				<div class="col-xs-3">Category</div>
-				<div class="col-xs-9" [innerHtml]="CategoryService.determineArticleCategory(project.category_id)"></div>
+				<div class="col-xs-9" [innerHtml]="getCategoryInfo(project.category_id)"></div>
 			</div>	
 			<div class="row">
 				<div class="col-xs-3">Created</div>

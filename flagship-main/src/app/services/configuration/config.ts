@@ -7,6 +7,10 @@ export class Config {
 		return "/app/images/";
 	}
 
+	public get serverArticlesPath() {
+		return "http://localhost:8080/articles?category_id=";
+	}
+
 }
 
 export interface IUserToken {

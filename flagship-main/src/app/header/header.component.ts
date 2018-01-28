@@ -66,6 +66,11 @@ export class HeaderComponent implements OnInit {
 		this.modalRef = this.bsModalService.show(login);
 	}
 
+	public logoutSession(): void {
+		this.sessionService.clearSessionState();
+		this.goToPage("");
+	}
+
 	public closeLoginModal(): void {
 		this.modalRef.hide();
 	}
