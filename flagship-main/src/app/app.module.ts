@@ -30,6 +30,7 @@ import {CarouselService} from "./services/carousel/carousel.service";
 import {SkillsService} from "./services/skills/skills.service";
 import {PortfolioService} from "./services/portfolio/portfolio.service";
 import {Config} from "./services/configuration/config";
+import {OtherService} from "./services/configuration/other.service";
 import {SessionService} from "./services/configuration/session.service";
 
 const routes: Routes = [
@@ -63,7 +64,7 @@ const routes: Routes = [
 	imports: [
 		BrowserModule,
 		CarouselModule,
-		BsDropdownModule,
+		BsDropdownModule.forRoot(),
 		AppRoutingModule,
 		RouterModule.forRoot(routes),
 		FormsModule,
@@ -74,6 +75,7 @@ const routes: Routes = [
 	],
 	providers: [
 		CategoryService,
+		OtherService,
 		ProjectService,
 		CarouselService,
 		SkillsService,

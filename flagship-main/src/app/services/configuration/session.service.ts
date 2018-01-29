@@ -52,5 +52,10 @@ export class SessionService {
 		sessionStorage.clear();
 	}
 
+	public isLoggedIn(): boolean {
+		let userToken = this.getUserToken();
+		return userToken ? userToken.auth : false;
+
+	}
 
 }

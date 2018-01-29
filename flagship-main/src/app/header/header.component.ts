@@ -1,9 +1,9 @@
 import {Component, TemplateRef, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
 import {SessionService} from "../services/configuration/session.service";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {BsModalRef} from "ngx-bootstrap/modal/bs-modal-ref.service";
 import {FormGroup, FormControl} from "@angular/forms";
+import {OtherService} from "../services/configuration/other.service";
 
 @Component({
 	selector: "header",
@@ -23,9 +23,9 @@ export class HeaderComponent implements OnInit {
 	];
 	public loginForm: FormGroup;
 	
-	constructor(private router: Router, 
-				private sessionService: SessionService, 
-				private bsModalService: BsModalService) {
+	constructor(private sessionService: SessionService, 
+				private bsModalService: BsModalService,
+				private otherService: OtherService) {
 		this.hideDropdownClick();
 	}
 
@@ -44,16 +44,12 @@ export class HeaderComponent implements OnInit {
 		// });
 	}
 
-	public goToPage(page: string, config = {}) {
-		this.router.navigate([page], config);
-	}
-
 	public loginUser(): void {
 		this.sessionService.loginUser(this.loginForm.value).subscribe((data) => {
 			if (data.success) {
 				this.user = data.success;
 				this.modalRef.hide();
-				this.goToPage("/resources")
+				this.otherService.goToPage("/resources")
 			}
 		});
 	}
@@ -68,11 +64,15 @@ export class HeaderComponent implements OnInit {
 
 	public logoutSession(): void {
 		this.sessionService.clearSessionState();
-		this.goToPage("");
+		this.otherService.goToPage("");
 	}
 
 	public closeLoginModal(): void {
 		this.modalRef.hide();
+	}
+
+	public checkLoginStatus(): boolean {
+		return this.sessionService.isLoggedIn();
 	}
 
 }

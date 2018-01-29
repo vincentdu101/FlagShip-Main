@@ -5,9 +5,11 @@ import {ProjectService} from "../services/project/project.service";
 import {SkillsService} from "../services/skills/skills.service";
 import {CategoryService} from "../services/category/category.service";
 import {IArticle} from "../services/configuration/config";
+import {OtherService} from "../services/configuration/other.service";
 
 @Component({
-	templateUrl: "./resources.component.html"
+	templateUrl: "./resources.component.html",
+	styleUrls: ["./resources.component.scss"]
 })
 
 export class ResourcesComponent {
@@ -16,7 +18,7 @@ export class ResourcesComponent {
 	public skills: IArticle[];
 
 	constructor(private sessionService: SessionService, 
-				private router: Router,
+				private otherService: OtherService,
 				private projectService: ProjectService,
 				private categoryService: CategoryService,
 				public skillsService: SkillsService) {
@@ -25,15 +27,19 @@ export class ResourcesComponent {
 	}
 
 	public getResources(): void {
-		this.projectService.getAllProjects().subscribe((projects) => {
+		this.categoryService.getAllResources().subscribe((projects) => {
 			this.projects = projects;
 		});
 	}
 
 	public getCategoryInfo(id: string): string {
-		return this.categoryService.determineArticleCategory(id);
+		return this.categoryService.getArticleCategoryInfo(id);
 	}
 
+	public editResourceLink(resource: IArticle): void {
+		let resourceType = this.getCategoryInfo(resource.category_id).toLowerCase();
+		this.otherService.goToPage("/" + resourceType + "/edit/" + resource._id);
+	}
 	
 
 }

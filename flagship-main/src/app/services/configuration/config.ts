@@ -7,8 +7,16 @@ export class Config {
 		return "/app/images/";
 	}
 
-	public get serverArticlesPath() {
-		return "http://localhost:8080/articles?category_id=";
+	public get serverHost(): string {
+		return "http://localhost:8080/";
+	}
+
+	public get serverArticlesPath(): string {
+		return this.serverHost + "articles";
+	}
+
+	public get serverCategoriesPath(): string {
+		return this.serverHost + "categories";
 	}
 
 }

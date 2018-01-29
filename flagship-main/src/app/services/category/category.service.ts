@@ -20,15 +20,23 @@ export class CategoryService {
 		"Skill": "warning"
 	};
 
+	private generateServerUrl(category, options: string = ""): string {
+		return this.config.serverArticlesPath + "?category_id=" + category._id + options;
+	}
+
 	public determineArticleCategory(category_id) {
 		var category = this.findCategoryById(category_id);
 		return "<span class='label label-" + this.TYPE[category.name] + "'>" + 
 				category.name + "</span>";
+	}
+
+	public getArticleCategoryInfo(category_id): string {
+		return this.findCategoryById(category_id).name;
 	}	
 
 	public loadAllCategories(): void {
 		let observable = Observable.create((observer) => {
-			this.http.get("http://localhost:8080/categories").subscribe((data) => {
+			this.http.get(this.config.serverCategoriesPath).subscribe((data) => {
 				// this.categories = data.json();
 				this.categories = data;
 				this.categorySubject.next(this.categories);
@@ -59,21 +67,32 @@ export class CategoryService {
 
 	public getResources(resource: string, options: string = "") {
 		return Observable.create((observer) => {
-			var category = this.findCategoryByName(resource);
+			let category = this.findCategoryByName(resource);
 
 			if (category) {
-				this.http.get(this.config.serverArticlesPath + category._id + options).subscribe((data) => {
+				this.http.get(this.generateServerUrl(category, options)).subscribe((data) => {
 					observer.next(data);
 				});
 			} else {
 				this.categorySubject.subscribe(() => {
 					category = this.findCategoryByName(resource);
-					this.http.get(this.config.serverArticlesPath + category._id + options).subscribe((data) => {
+					this.http.get(this.generateServerUrl(category, options)).subscribe((data) => {
 						observer.next(data);
 					});
 				});
 			}
 		});
 	}
+
+	public getAllResources(): Observable<any> {
+		return Observable.create((observer) => {
+			let serverUrl = this.config.serverArticlesPath;
+
+			this.http.get(serverUrl).subscribe((data) => {
+				observer.next(data);
+			});
+		});
+	}
+
 
 }
