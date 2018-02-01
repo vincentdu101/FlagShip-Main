@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import {ModalModule} from "ngx-bootstrap/modal";
 import {ReactiveFormsModule} from "@angular/forms";
+import { NgxEditorModule } from 'ngx-editor';
 
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
@@ -67,6 +68,7 @@ const routes: Routes = [
 		BsDropdownModule.forRoot(),
 		AppRoutingModule,
 		RouterModule.forRoot(routes),
+		NgxEditorModule,
 		FormsModule,
 		NgSelectModule,
 		HttpClientModule,

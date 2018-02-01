@@ -1,69 +1,63 @@
 <form class="container-fluid top-buffer">
 
 	<h4>Edit Project</h4>
-
-	<div class="row">
-		<div class="col-xs-12 col-sm-6 panel">
-			<div class="row">
-				<div class="col-xs-12 col-sm-3">
-					Name
+	
+	<form [formGroup]="project">
+		<div class="row">
+			<div class="col-xs-12 panel">
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						Name
+					</div>
+					<div class="col-xs-12 col-sm-9">
+						<input type="text" class="form-control" [(ngModel)]="project.name" name="name" formControlName="name" />
+					</div>				
 				</div>
-				<div class="col-xs-12 col-sm-9">
-					<input type="text" class="form-control" [(ngModel)]="project.name" />
-				</div>				
-			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-3">
-					Body
-				</div>
-				<div class="col-xs-12 col-sm-9">
-			    	<textarea [(ngModel)]="project.body" class="form-control editor-textarea"></textarea>
-			    </div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-3">
-					Description
-				</div>
-				<div class="col-xs-12 col-sm-9">
-					<input type="text" class="form-control" [(ngModel)]="project.description" />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-3">
-					Category
-				</div>
-				<div class="col-xs-12 col-sm-9">
-					<div class="btn-group" dropdown>
-					  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-					    Button dropdown <span class="caret"></span>
-					  </button>
-					  <ul *dropdownMenu class="dropdown-menu" role="menu">
-					    <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-					    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-					    <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-					    <li class="divider dropdown-divider"></li>
-					    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-					    </li>
-					  </ul>
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						Description
+					</div>
+					<div class="col-xs-12 col-sm-9">
+						<input type="text" class="form-control" [(ngModel)]="project.description" name="description" formControlName="description" />
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-3">
-					Caption File Name
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						Category
+					</div>
+					<div class="col-xs-12 col-sm-9">
+						<div class="btn-group" dropdown>
+						  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+						    Button dropdown <span class="caret"></span>
+						  </button>
+						  <ul *dropdownMenu class="dropdown-menu" role="menu">
+						    <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+						    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+						    <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+						    <li class="divider dropdown-divider"></li>
+						    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+						    </li>
+						  </ul>
+						</div>
+					</div>
 				</div>
-				<div class="col-xs-12 col-sm-9">
-					<input type="text" class="form-control" [(ngModel)]="project.image" />
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						Caption File Name
+					</div>
+					<div class="col-xs-12 col-sm-9">
+						<input type="text" class="form-control" [(ngModel)]="project.image" name="image" formControlName="image" />
+					</div>
 				</div>
+				<div class="row">
+					<button (click)="saveProject()" class="btn btn-primary">Save</button>		
+					<button (click)="createProject()" class="btn btn-default">Cancel</button>	
+				</div>		
 			</div>
-			<div class="row">
-				<button (click)="saveProject()" class="btn btn-primary">Save</button>		
-				<button (click)="createProject()" class="btn btn-default">Cancel</button>	
-			</div>		
+			<div class="col-xs-12 panel panel-default editor-preview-section">
+				<app-ngx-editor [spellcheck]="true" [innerHTML]="project.body"></app-ngx-editor>
+			</div>
 		</div>
-		<div class="col-xs-12 col-sm-6 panel panel-default editor-preview-section">
-			<div [innerHTML]="project.body"></div>
-		</div>
-	</div>
+	</form>
 
 </form>
