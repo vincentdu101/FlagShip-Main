@@ -23,7 +23,8 @@
       ],
       "scripts": [
           "../node_modules/jquery/dist/jquery.js",
-          "../node_modules/ngx-bootstrap/index.js"
+          "../node_modules/ngx-bootstrap/index.js",
+          "../node_modules/trumbowyg/dist/trumbowyg.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

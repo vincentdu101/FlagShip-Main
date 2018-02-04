@@ -10,7 +10,13 @@
 						Name
 					</div>
 					<div class="col-xs-12 col-sm-9">
-						<input type="text" class="form-control" [(ngModel)]="project.name" name="name" formControlName="name" />
+						<input 	type="text" 
+								class="form-control" 
+								[(ngModel)]="name" 
+								name="name" 
+								formControlName="name"
+								[value]="getProjectValue('name')"
+								(input)="name = $event.target.value"  />
 					</div>				
 				</div>
 				<div class="row">
@@ -18,7 +24,13 @@
 						Description
 					</div>
 					<div class="col-xs-12 col-sm-9">
-						<input type="text" class="form-control" [(ngModel)]="project.description" name="description" formControlName="description" />
+						<textarea 	class="form-control" 
+								[(ngModel)]="description" 
+								name="description" 
+								formControlName="description"
+								[value]="getProjectValue('description')"
+								(input)="description = $event.target.value">
+						</textarea>
 					</div>
 				</div>
 				<div class="row">
@@ -46,7 +58,7 @@
 						Caption File Name
 					</div>
 					<div class="col-xs-12 col-sm-9">
-						<input type="text" class="form-control" [(ngModel)]="project.image" name="image" formControlName="image" />
+						<input type="text" class="form-control" [(ngModel)]="image" name="image" formControlName="image" />
 					</div>
 				</div>
 				<div class="row">
@@ -55,7 +67,9 @@
 				</div>		
 			</div>
 			<div class="col-xs-12 panel panel-default editor-preview-section">
-				<app-ngx-editor [spellcheck]="true" [innerHTML]="project.body"></app-ngx-editor>
+				<div id="project-body-editor" 
+					[innerHTML]="getProjectValue('body')">
+				</div>>
 			</div>
 		</div>
 	</form>
