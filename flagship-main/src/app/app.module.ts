@@ -10,6 +10,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import {ModalModule} from "ngx-bootstrap/modal";
 import {ReactiveFormsModule} from "@angular/forms";
 import { NgxEditorModule } from 'ngx-editor';
+import "froala-editor/js/froala_editor.pkgd.min.js";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
@@ -68,7 +70,8 @@ const routes: Routes = [
 		BsDropdownModule.forRoot(),
 		AppRoutingModule,
 		RouterModule.forRoot(routes),
-		NgxEditorModule,
+		FroalaEditorModule.forRoot(), 
+		FroalaViewModule.forRoot(),
 		FormsModule,
 		NgSelectModule,
 		HttpClientModule,

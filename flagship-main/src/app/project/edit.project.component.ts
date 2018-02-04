@@ -4,7 +4,6 @@ import {CategoryService} from "../services/category/category.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
 import {OtherService} from "../services/configuration/other.service";
-import * as $ from "jquery";
 
 @Component({
 	templateUrl: "./edit.project.component.html",
@@ -16,6 +15,7 @@ export class EditProjectComponent implements OnInit {
 	public content;
 	public categories = [];
 	public project: FormGroup;
+	public editorBody: string = "";
 
 	constructor(private projectService: ProjectService,
 				private categoryService: CategoryService,
@@ -32,7 +32,6 @@ export class EditProjectComponent implements OnInit {
 			this.projectData = data;
 			this.projectData.category = this.categoryService.findCategoryById(this.projectData.category_id).name;
 			this.setupEditForm(this.projectData);
-			$('#project-body-editor').trumbowyg();
 		});
 	}
 
@@ -54,6 +53,7 @@ export class EditProjectComponent implements OnInit {
 			category: new FormControl({value: projectData.category}),
 			image: new FormControl({ value: projectData.image })
 		});
+		this.editorBody = projectData.body;
 	}
 
 	public saveProject(): void {

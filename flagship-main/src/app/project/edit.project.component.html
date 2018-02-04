@@ -1,4 +1,4 @@
-<form class="container-fluid top-buffer">
+<div class="container-fluid top-buffer">
 
 	<h4>Edit Project</h4>
 	
@@ -67,11 +67,9 @@
 				</div>		
 			</div>
 			<div class="col-xs-12 panel panel-default editor-preview-section">
-				<div id="project-body-editor" 
-					[innerHTML]="getProjectValue('body')">
-				</div>>
+				<div [froalaEditor] [(froalaModel)]="editorBody"></div>
 			</div>
 		</div>
 	</form>
 
-</form>
+</div>
