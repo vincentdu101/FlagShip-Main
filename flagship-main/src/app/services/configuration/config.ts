@@ -27,12 +27,19 @@ export interface IUserToken {
 }
 
 export interface IArticle {
-	_id: string,
+	_id: string;
 	name: string;
 	description: string;
 	body: string;
 	image: string;
 	__v: number;
 	category_id: string;
+	created_at: Date;
+}
+
+export interface ICategory {
+	_id: string;
+	name: string;
+	description: string;
 	created_at: Date;
 }

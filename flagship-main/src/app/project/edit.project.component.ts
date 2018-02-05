@@ -4,7 +4,7 @@ import {CategoryService} from "../services/category/category.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
 import {OtherService} from "../services/configuration/other.service";
-import {IArticle} from "../services/configuration/config";
+import {IArticle, ICategory} from "../services/configuration/config";
 
 @Component({
 	templateUrl: "./edit.project.component.html",
@@ -14,10 +14,10 @@ export class EditProjectComponent implements OnInit {
 
 	public projectData: IArticle;
 	public content;
-	public categories = [];
+	public categories: ICategory[] = [];
 	public project: FormGroup;
 	public editorBody: string = "";
-	public selectedCategory = {};
+	public selectedCategory: ICategory;
 
 	constructor(private projectService: ProjectService,
 				private categoryService: CategoryService,
@@ -94,6 +94,10 @@ export class EditProjectComponent implements OnInit {
 	public updateCategory(category): void {
 		this.projectData.category_id = category._id;
 		this.selectedCategory = category;
+	}
+
+	public getSelectedCategoryName(): string {
+		return this.selectedCategory ? this.selectedCategory.name : "";
 	}
 
 }
