@@ -73,11 +73,7 @@ export class ProjectService {
 	}
 
 	public saveProject(project) {
-		var params = this.generatePostUrlParams(project);
-		this.http.put("http://localhost:8080/articles/" + project._id, params.body, params.options)
-			.subscribe(data => {
-				this.router.navigate(["/projects"]);
-			});
+		return this.http.put("http://localhost:8080/articles/" + project._id, project);
 	}
 
 	public getProject(id: string) {

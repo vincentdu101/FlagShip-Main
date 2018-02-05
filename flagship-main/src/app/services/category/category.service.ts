@@ -61,8 +61,16 @@ export class CategoryService {
 		})[0];
 	}
 
-	public getCategories() {
-		return this.categories;
+	public getCategories(): Observable<any> {
+		return Observable.create((observer) => {
+			if (this.categories.length > 0) {
+				observer.next(this.categories);
+			} else {
+				this.categorySubject.subscribe((data) => {
+					observer.next(this.categories);
+				});
+			}
+		});
 	}
 
 	public getResources(resource: string, options: string = "") {
