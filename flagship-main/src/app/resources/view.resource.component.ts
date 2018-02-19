@@ -5,13 +5,13 @@ import {Router, ActivatedRoute} from "@angular/router";
 
 
 @Component({
-	templateUrl: "./view.project.component.html",
-	selector: "view-project"
+	templateUrl: "./view.resource.component.html",
+	selector: "view-resource"
 })
 
-export class ViewProjectComponent {
+export class ViewResourceComponent {
 
-	public project = { name: "", description: "", image: "", body: "", category: "Projects" };
+	public resource = { name: "", description: "", image: "", body: "", category: "Projects" };
 	public content;
 	public categories = [];
 
@@ -23,7 +23,7 @@ export class ViewProjectComponent {
 	ngOnInit() {
 		this.route.params.subscribe(params => {
 			this.projectService.getProject(params.id).subscribe(data => {
-				// this.project = data.json();
+				// this.resource = data.json();
 			});
 		});
 	}

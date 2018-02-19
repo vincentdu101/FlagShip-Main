@@ -38,7 +38,10 @@ export class ResourcesComponent {
 
 	public editResourceLink(resource: IArticle): void {
 		let resourceType = this.getCategoryInfo(resource.category_id).toLowerCase();
-		this.otherService.goToPage("/" + resourceType + "/edit/" + resource._id);
+		this.otherService.goToPage(
+			"/resources/edit/" + resource._id, 
+			{ queryParams: { type: resourceType } }
+		);
 	}
 	
 

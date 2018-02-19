@@ -4,13 +4,13 @@ import {CategoryService} from "../services/category/category.service";
 import {ICategory} from "../services/configuration/config";
 
 @Component({
-	templateUrl: "./new.project.component.html",
-	selector: "new-project"
+	templateUrl: "./new.resource.component.html",
+	selector: "new-resource"
 })
 
-export class NewProjectComponent {
+export class NewResourceComponent {
 
-	public project = { name: "", description: "", image: "", body: "", category: "Projects" };
+	public resource = { name: "", description: "", image: "", body: "", category: "Projects" };
 	public content;
 	public categories: ICategory[] = [];
 
@@ -23,15 +23,15 @@ export class NewProjectComponent {
 	}
 
 	public createProject(): void {
-		this.projectService.createProject(this.project);
+		this.projectService.createProject(this.resource);
 	}
 
 	public toggleDropdown(category): void {
-		this.project.category = category.name;
+		this.resource.category = category.name;
 	}
 	
 	public checkActiveCategory(category): any {
-		return { "active": category.name === this.project.name };
+		return { "active": category.name === this.resource.name };
 	}
 
 }

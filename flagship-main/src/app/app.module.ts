@@ -22,10 +22,9 @@ import {SkillsComponent} from "./skills/skills.component";
 import {ResourcesComponent} from "./resources/resources.component";
 import {HomeComponent} from "./home/home.component";
 import {ProjectsComponent} from "./project/projects.component";
-import {EditProjectComponent} from "./project/edit.project.component";
-import {NewProjectComponent} from "./project/new.project.component";
-import {ViewProjectComponent} from "./project/view.project.component";
-import {ProjectsIndexComponent} from "./project/projects.index.component";
+import {EditResourceComponent} from "./resources/edit.resource.component";
+import {NewResourceComponent} from "./resources/new.resource.component";
+import {ViewResourceComponent} from "./resources/view.resource.component";
 
 import {CategoryService} from "./services/category/category.service";
 import {ProjectService} from "./services/project/project.service";
@@ -40,10 +39,9 @@ const routes: Routes = [
 	{path: "", component: HomeComponent},
 	{path: "resources", component: ResourcesComponent},
 	{path: "projects", component: ProjectsComponent},
-	{path: "projects/index", component: ProjectsIndexComponent},
-	{path: "projects/new", component: NewProjectComponent},
-	{path: "projects/edit/:id", component: EditProjectComponent},
-	{path: "projects/:id", component: ViewProjectComponent},
+	{path: "resources/new", component: NewResourceComponent},
+	{path: "resources/edit/:id", component: EditResourceComponent},
+	{path: "resources/:id", component: ViewResourceComponent},
 	{path: "skills", component: SkillsComponent},
 	{path: "**", component: HomeComponent}
 ];
@@ -58,10 +56,9 @@ const routes: Routes = [
 		SkillsComponent, 
 		CarouselComponent,
 		ProjectsComponent,
-		ProjectsIndexComponent,
-		EditProjectComponent,
-		ViewProjectComponent,
-		NewProjectComponent,
+		EditResourceComponent,
+		ViewResourceComponent,
+		NewResourceComponent,
 		ResourcesComponent
 	],
 	imports: [

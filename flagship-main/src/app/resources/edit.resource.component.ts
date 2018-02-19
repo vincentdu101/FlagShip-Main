@@ -7,15 +7,15 @@ import {OtherService} from "../services/configuration/other.service";
 import {IArticle, ICategory} from "../services/configuration/config";
 
 @Component({
-	templateUrl: "./edit.project.component.html",
-	selector: "edit-project"
+	templateUrl: "./edit.resource.component.html",
+	selector: "edit-resource"
 })
-export class EditProjectComponent implements OnInit {
+export class EditResourceComponent implements OnInit {
 
-	public projectData: IArticle;
+	public resourceData: IArticle;
 	public content;
 	public categories: ICategory[] = [];
-	public project: FormGroup;
+	public resource: FormGroup;
 	public editorBody: string = "";
 	public selectedCategory: ICategory;
 
@@ -31,39 +31,40 @@ export class EditProjectComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		const id = this.activatedRoute.snapshot.paramMap.get("id");
+		const id = this.activatedRoute.snapshot.params.id;
+		const type = this.activatedRoute.snapshot.queryParams.type;
 		this.initEditForm();
 		this.projectService.getProject(id).subscribe((data: IArticle) => {
-			this.projectData = data;
-			this.selectedCategory = this.categoryService.findCategoryById(this.projectData.category_id);
-			this.setupEditForm(this.projectData);
+			this.resourceData = data;
+			this.selectedCategory = this.categoryService.findCategoryById(this.resourceData.category_id);
+			this.setupEditForm(this.resourceData);
 		});
 	}
 
 	private initEditForm(): void {
-		this.project = new FormGroup({
+		this.resource = new FormGroup({
 			name: new FormControl(),
 			description: new FormControl(),
 			image: new FormControl()
 		});
 	}
 
-	private setupEditForm(projectData): void {
-		this.project = new FormGroup({
-			name: new FormControl({value: projectData.name}),
-			description: new FormControl({ value: projectData.description }),
-			image: new FormControl({ value: projectData.image })
+	private setupEditForm(resourceData): void {
+		this.resource = new FormGroup({
+			name: new FormControl({value: resourceData.name}),
+			description: new FormControl({ value: resourceData.description }),
+			image: new FormControl({ value: resourceData.image })
 		});
-		this.editorBody = projectData.body;
+		this.editorBody = resourceData.body;
 	}
 
 	public saveProject(): void {
-		this.projectData.name = this.getProjectValue("name");
-		this.projectData.description = this.getProjectValue("description");
-		this.projectData.image = this.getProjectValue("image");
-		this.projectData.category_id = this.selectedCategory._id;
-		this.projectData.body = this.editorBody;
-		this.projectService.saveProject(this.projectData).subscribe((data) => {
+		this.resourceData.name = this.getResourceValue("name");
+		this.resourceData.description = this.getResourceValue("description");
+		this.resourceData.image = this.getResourceValue("image");
+		this.resourceData.category_id = this.selectedCategory._id;
+		this.resourceData.body = this.editorBody;
+		this.projectService.saveProject(this.resourceData).subscribe((data) => {
 			this.otherService.goToPage("resources");
 		});
 	}
@@ -76,8 +77,8 @@ export class EditProjectComponent implements OnInit {
 		return { "active": category.name === this.selectedCategory.name };
 	}
 
-	public getProjectValue(attr: string): string {
-		let valueMap = this.project.controls[attr].value;
+	public getResourceValue(attr: string): string {
+		let valueMap = this.resource.controls[attr].value;
 		if (valueMap && valueMap.value) {
 			return valueMap.value;
 		} else if (valueMap) {
@@ -88,11 +89,11 @@ export class EditProjectComponent implements OnInit {
 	}
 
 	public matchCategorySelected(category): {"active": boolean} {
-		return {"active": category._id === this.projectData.category_id};
+		return {"active": category._id === this.resourceData.category_id};
 	}
 
 	public updateCategory(category): void {
-		this.projectData.category_id = category._id;
+		this.resourceData.category_id = category._id;
 		this.selectedCategory = category;
 	}
 

@@ -2,7 +2,7 @@
 
 	<h4>Edit Project</h4>
 	
-	<form [formGroup]="project">
+	<form [formGroup]="resource">
 		<div class="row">
 			<div class="col-md-12 col-lg-5 card">
 				<div class="row padding-top-form-buffer">
@@ -15,7 +15,7 @@
 								[(ngModel)]="name" 
 								name="name" 
 								formControlName="name"
-								[value]="getProjectValue('name')" />
+								[value]="getResourceValue('name')" />
 					</div>				
 				</div>
 				<div class="row">
@@ -27,7 +27,7 @@
 								[(ngModel)]="description" 
 								name="description" 
 								formControlName="description"
-								[value]="getProjectValue('description')"
+								[value]="getResourceValue('description')"
 								rows="10">
 						</textarea>
 					</div>
