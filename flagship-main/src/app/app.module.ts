@@ -27,7 +27,7 @@ import {NewResourceComponent} from "./resources/new.resource.component";
 import {ViewResourceComponent} from "./resources/view.resource.component";
 
 import {CategoryService} from "./services/category/category.service";
-import {ProjectService} from "./services/project/project.service";
+import {ResourceService} from "./services/resource/resource.service";
 import {CarouselService} from "./services/carousel/carousel.service";
 import {SkillsService} from "./services/skills/skills.service";
 import {PortfolioService} from "./services/portfolio/portfolio.service";
@@ -78,7 +78,7 @@ const routes: Routes = [
 	providers: [
 		CategoryService,
 		OtherService,
-		ProjectService,
+		ResourceService,
 		CarouselService,
 		SkillsService,
 		PortfolioService,

@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {SessionService} from "../services/configuration/session.service";
-import {ProjectService} from "../services/project/project.service";
+import {ResourceService} from "../services/resource/resource.service";
 import {SkillsService} from "../services/skills/skills.service";
 import {CategoryService} from "../services/category/category.service";
 import {IArticle} from "../services/configuration/config";
@@ -19,7 +19,7 @@ export class ResourcesComponent {
 
 	constructor(private sessionService: SessionService, 
 				private otherService: OtherService,
-				private projectService: ProjectService,
+				private resourceService: ResourceService,
 				private categoryService: CategoryService,
 				public skillsService: SkillsService) {
 		this.sessionService.checkLoginStatus();

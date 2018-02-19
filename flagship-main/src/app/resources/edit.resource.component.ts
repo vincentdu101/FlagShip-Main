@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ProjectService} from "../services/project/project.service";
+import {ResourceService} from "../services/resource/resource.service";
 import {CategoryService} from "../services/category/category.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
@@ -19,7 +19,7 @@ export class EditResourceComponent implements OnInit {
 	public editorBody: string = "";
 	public selectedCategory: ICategory;
 
-	constructor(private projectService: ProjectService,
+	constructor(private resourceService: ResourceService,
 				private categoryService: CategoryService,
 				private activatedRoute: ActivatedRoute,
 				private otherService: OtherService) {
@@ -34,7 +34,7 @@ export class EditResourceComponent implements OnInit {
 		const id = this.activatedRoute.snapshot.params.id;
 		const type = this.activatedRoute.snapshot.queryParams.type;
 		this.initEditForm();
-		this.projectService.getProject(id).subscribe((data: IArticle) => {
+		this.resourceService.getResource(id).subscribe((data: IArticle) => {
 			this.resourceData = data;
 			this.selectedCategory = this.categoryService.findCategoryById(this.resourceData.category_id);
 			this.setupEditForm(this.resourceData);
@@ -64,7 +64,7 @@ export class EditResourceComponent implements OnInit {
 		this.resourceData.image = this.getResourceValue("image");
 		this.resourceData.category_id = this.selectedCategory._id;
 		this.resourceData.body = this.editorBody;
-		this.projectService.saveProject(this.resourceData).subscribe((data) => {
+		this.resourceService.saveResource(this.resourceData).subscribe((data) => {
 			this.otherService.goToPage("resources");
 		});
 	}
