@@ -32,9 +32,9 @@ export interface IArticle {
 	description: string;
 	body: string;
 	image: string;
-	__v: number;
+	__v?: number;
 	category_id: string;
-	created_at: Date;
+	created_at?: Date;
 }
 
 export interface ICategory {

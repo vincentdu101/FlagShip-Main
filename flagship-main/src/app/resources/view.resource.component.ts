@@ -1,7 +1,8 @@
 import {Component} from "@angular/core";
-import {ProjectService} from "../services/project/project.service";
+import {ResourceService} from "../services/resource/resource.service";
 import {CategoryService} from "../services/category/category.service";
 import {Router, ActivatedRoute} from "@angular/router";
+import {IArticle} from "../services/configuration/config";
 
 
 @Component({
@@ -11,21 +12,23 @@ import {Router, ActivatedRoute} from "@angular/router";
 
 export class ViewResourceComponent {
 
-	public resource = { name: "", description: "", image: "", body: "", category: "Projects" };
+	public resource: IArticle;
 	public content;
 	public categories = [];
 
-	constructor(private projectService: ProjectService,
-				private router: Router,
-				private route: ActivatedRoute) {
+	constructor(private resourceService: ResourceService,
+				private activatedRoute: ActivatedRoute) {
 	}
 
 	ngOnInit() {
-		this.route.params.subscribe(params => {
-			this.projectService.getProject(params.id).subscribe(data => {
-				// this.resource = data.json();
-			});
+		const id = this.activatedRoute.snapshot.params.id;
+		this.resourceService.getResource(id).subscribe((data: IArticle) => {
+			this.resource = data;
 		});
+	}
+
+	public getResourceBody(): string {
+		return !!this.resource ? this.resource.body : "";
 	}
 
 }

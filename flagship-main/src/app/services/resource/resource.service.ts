@@ -39,20 +39,20 @@ export class ResourceService {
 		});
 	}
 
-	public createResource(resource) {
-		var params = this.generatePostUrlParams(resource);
-		this.http.post("http://localhost:8080/articles", params.body, params.options)
-			.subscribe(data => {
-				this.router.navigate(["/resources"]);
-			});
+	public createResource(resource): Observable<any> {
+		return this.http.post("http://localhost:8080/articles", resource);
 	}
 
-	public saveResource(resource) {
+	public saveResource(resource): Observable<any> {
 		return this.http.put("http://localhost:8080/articles/" + resource._id, resource);
 	}
 
 	public getResource(id: string) {
 		return this.http.get("http://localhost:8080/articles/" + id);
+	}
+
+	public deleteResource(id: string) {
+		return this.http.delete("http://localhost:8080/articles/" + id);
 	}
 
 }

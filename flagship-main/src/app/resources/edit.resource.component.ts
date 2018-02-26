@@ -26,7 +26,6 @@ export class EditResourceComponent implements OnInit {
 		this.content = '<p>Hello <strong>World !</strong></p>';
 		this.categoryService.getCategories().subscribe((data) => {
 			this.categories = data;
-			console.log(this.categories);
 		});
 	}
 

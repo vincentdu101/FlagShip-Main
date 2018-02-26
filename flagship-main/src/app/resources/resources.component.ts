@@ -43,6 +43,19 @@ export class ResourcesComponent {
 			{ queryParams: { type: resourceType } }
 		);
 	}
-	
 
+	public viewResourceLink(resource: IArticle): void {
+		this.otherService.goToPage("/resources/" + resource._id);
+	}
+
+	public newResourceLink(): void {
+		this.otherService.goToPage("/resources/new");
+	}
+
+	public deleteResourceLink(resource: IArticle): void {
+		this.resourceService.deleteResource(resource._id).subscribe((data) => {
+			this.getResources();
+		});
+	}
+	
 }

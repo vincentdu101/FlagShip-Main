@@ -1,6 +1,7 @@
 <div id="wrapper" class="container-fluid">
 	<div class="tagline">
 		<h1>All Resources</h1>
+		<button class="btn btn-primary" (click)="newResourceLink()">New Resource</button>
 	</div>
 
 	<div class="card resources-table row">
@@ -29,8 +30,8 @@
 							</button>
 							<ul *dropdownMenu class="dropdown-menu" role="menu">
 								<li role="menuitem"><a class="dropdown-item" (click)="editResourceLink(project)">Edit</a></li>
-								<li role="menuitem"><a class="dropdown-item" href="#">View</a></li>
-								<li role="menuitem"><a class="dropdown-item" href="#">Delete</a></li>
+								<li role="menuitem"><a class="dropdown-item" (click)="viewResourceLink(project)">View</a></li>
+								<li role="menuitem"><a class="dropdown-item" (click)="deleteResourceLink(project)">Delete</a></li>
 							</ul>
 						</div>
 					</td>
