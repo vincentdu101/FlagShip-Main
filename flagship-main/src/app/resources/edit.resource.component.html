@@ -58,7 +58,12 @@
 						Caption File Name
 					</div>
 					<div class="col-xs-12 col-sm-9">
-						<input type="text" class="form-control" [(ngModel)]="image" name="image" formControlName="image" />
+						<input 	type="text" 
+								class="form-control" 
+								[(ngModel)]="image" 
+								name="image" 
+								formControlName="image"
+								[value]="getResourceValue('image')" />
 					</div>
 				</div>		
 			</div>

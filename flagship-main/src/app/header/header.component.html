@@ -8,7 +8,7 @@
       <div class="nav-mobile"><a id="nav-toggle" (click)="triggerSlideToggle()"><span></span></a></div>
       <ul class="nav-list">
         <li *ngFor="let item of bars">
-            <a>{{item.name}}</a>
+            <a (click)="goToView(item.url)">{{item.name}}</a>
         </li>
       </ul>
     </nav>

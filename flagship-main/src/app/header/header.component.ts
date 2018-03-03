@@ -75,4 +75,8 @@ export class HeaderComponent implements OnInit {
 		return this.sessionService.isLoggedIn();
 	}
 
+	public goToView(url: string): void {
+		this.otherService.goToPage(url);
+	}
+
 }

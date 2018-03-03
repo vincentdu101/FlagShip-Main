@@ -46,7 +46,7 @@
 
 .carousel-section {
 	background-color: white;
-	height: 400px;
+	// height: 400px;
 
 	.carousel-control {
 		width: 50px;
@@ -66,6 +66,10 @@
 
 	.carousel-slide-image {
 		height: 300px;
+	}
+
+	.callout-body {
+		margin-top: 25px;
 	}
 }
 
