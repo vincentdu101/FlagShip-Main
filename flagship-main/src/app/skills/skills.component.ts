@@ -3,7 +3,8 @@ import {SkillsService} from "../services/skills/skills.service";
 
 @Component({
 	selector: "skills",
-	templateUrl: "./skills.component.html"
+	templateUrl: "./skills.component.html",
+	styleUrls: ["./skills.component.scss"]
 })
 
 export class SkillsComponent {
