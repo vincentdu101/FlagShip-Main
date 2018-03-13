@@ -40,19 +40,19 @@ export class ResourceService {
 	}
 
 	public createResource(resource): Observable<any> {
-		return this.http.post("http://localhost:8080/articles", resource);
+		return this.http.post(this.config.serverArticlesPath, resource);
 	}
 
 	public saveResource(resource): Observable<any> {
-		return this.http.put("http://localhost:8080/articles/" + resource._id, resource);
+		return this.http.put(this.config.serverArticlesPath + "/" + resource._id, resource);
 	}
 
 	public getResource(id: string) {
-		return this.http.get("http://localhost:8080/articles/" + id);
+		return this.http.get(this.config.serverArticlesPath + "/" + id);
 	}
 
 	public deleteResource(id: string) {
-		return this.http.delete("http://localhost:8080/articles/" + id);
+		return this.http.delete(this.config.serverArticlesPath + "/" + id);
 	}
 
 }

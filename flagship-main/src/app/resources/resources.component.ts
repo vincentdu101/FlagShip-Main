@@ -4,7 +4,7 @@ import {SessionService} from "../services/configuration/session.service";
 import {ResourceService} from "../services/resource/resource.service";
 import {SkillsService} from "../services/skills/skills.service";
 import {CategoryService} from "../services/category/category.service";
-import {IArticle} from "../services/configuration/config";
+import {IArticle, ISkill} from "../services/configuration/config";
 import {OtherService} from "../services/configuration/other.service";
 
 @Component({
@@ -15,7 +15,7 @@ import {OtherService} from "../services/configuration/other.service";
 export class ResourcesComponent {
 
 	public projects: IArticle[];
-	public skills: IArticle[];
+	public skills: ISkill[];
 
 	constructor(private sessionService: SessionService, 
 				private otherService: OtherService,
@@ -24,6 +24,7 @@ export class ResourcesComponent {
 				public skillsService: SkillsService) {
 		this.sessionService.checkLoginStatus();
 		this.getResources();
+		this.getSkills();
 	}
 
 	public getResources(): void {
@@ -44,6 +45,12 @@ export class ResourcesComponent {
 		);
 	}
 
+	public getSkills(): void {
+		this.skillsService.getSkills().subscribe((skills: ISkill[]) => {
+			this.skills = skills;
+		});
+	}
+
 	public viewResourceLink(resource: IArticle): void {
 		this.otherService.goToPage("/resources/" + resource._id);
 	}
@@ -58,4 +65,18 @@ export class ResourcesComponent {
 		});
 	}
 	
+	public newSkillLink(): void {
+		this.otherService.goToPage("/skills/new");
+	}
+
+	public editSkillLink(skill: ISkill): void {
+		this.otherService.goToPage("/skills/edit/" + skill._id);
+	}
+
+	public deleteSkillLink(skill: ISkill): void {
+		this.skillsService.deleteSkill(skill._id).subscribe(() => {
+			this.getSkills();
+		});
+	}	
+
 }

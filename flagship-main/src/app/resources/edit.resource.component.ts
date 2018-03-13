@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ResourceService} from "../services/resource/resource.service";
 import {CategoryService} from "../services/category/category.service";
+import {ViewService} from "../services/view/view.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
 import {OtherService} from "../services/configuration/other.service";
@@ -21,6 +22,7 @@ export class EditResourceComponent implements OnInit {
 
 	constructor(private resourceService: ResourceService,
 				private categoryService: CategoryService,
+				private viewService: ViewService,
 				private activatedRoute: ActivatedRoute,
 				private otherService: OtherService) {
 		this.content = '<p>Hello <strong>World !</strong></p>';
@@ -58,9 +60,9 @@ export class EditResourceComponent implements OnInit {
 	}
 
 	public saveProject(): void {
-		this.resourceData.name = this.getResourceValue("name");
-		this.resourceData.description = this.getResourceValue("description");
-		this.resourceData.image = this.getResourceValue("image");
+		this.resourceData.name = this.viewService.getResourceValue(this.resource, "name");
+		this.resourceData.description = this.viewService.getResourceValue(this.resource, "description");
+		this.resourceData.image = this.viewService.getResourceValue(this.resource, "image");
 		this.resourceData.category_id = this.selectedCategory._id;
 		this.resourceData.body = this.editorBody;
 		this.resourceService.saveResource(this.resourceData).subscribe((data) => {
@@ -76,17 +78,6 @@ export class EditResourceComponent implements OnInit {
 		return { "active": category.name === this.selectedCategory.name };
 	}
 
-	public getResourceValue(attr: string): string {
-		let valueMap = this.resource.controls[attr].value;
-		if (valueMap && valueMap.value) {
-			return valueMap.value;
-		} else if (valueMap) {
-			return valueMap;
-		} else {
-			return "";
-		}
-	}
-
 	public matchCategorySelected(category): {"active": boolean} {
 		return {"active": category._id === this.resourceData.category_id};
 	}
@@ -98,6 +89,10 @@ export class EditResourceComponent implements OnInit {
 
 	public getSelectedCategoryName(): string {
 		return this.selectedCategory ? this.selectedCategory.name : "";
+	}
+
+	public getResourceValue(attr: string): string {
+		return this.viewService.getResourceValue(this.resource, attr);
 	}
 
 }

@@ -19,6 +19,10 @@ export class Config {
 		return this.serverHost + "categories";
 	}
 
+	public get serverSkillsPath(): string {
+		return this.serverHost + "skills";
+	}
+	
 }
 
 export interface IUserToken {
@@ -42,4 +46,13 @@ export interface ICategory {
 	name: string;
 	description: string;
 	created_at: Date;
+}
+
+export interface ISkill {
+	_id: string;
+	name: string;
+	level: number;
+	_v?: number;
+	category_id: string;
+	created_at?: Date;
 }

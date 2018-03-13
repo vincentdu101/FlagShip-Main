@@ -1,6 +1,6 @@
 <div id="wrapper" class="container-fluid">
 	<div class="tagline">
-		<h1>All Resources</h1>
+		<h1>All Articles</h1>
 		<button class="btn btn-primary" (click)="newResourceLink()">New Resource</button>
 	</div>
 
@@ -32,6 +32,43 @@
 								<li role="menuitem"><a class="dropdown-item" (click)="editResourceLink(project)">Edit</a></li>
 								<li role="menuitem"><a class="dropdown-item" (click)="viewResourceLink(project)">View</a></li>
 								<li role="menuitem"><a class="dropdown-item" (click)="deleteResourceLink(project)">Delete</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h1>Skills</h1>
+	<button class="btn btn-primary" (click)="newSkillLink()">New Skill</button>
+	<div class="card resources-table row">
+		<table class="table table-bordered table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Level</th>
+					<th>Category</th>
+					<th>Created</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let skill of skills">
+					<td>{{skill._id}}</td>
+					<td>{{skill.name}}</td>
+					<td>{{skill.level}}</td>
+					<td [innerHTML]="getCategoryInfo(skill.category_id)"></td>
+					<td>{{skill.created_at}}</td>
+					<td>
+						<div class="btn-group" dropdown>
+							<button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+								Actions <span class="caret"></span>
+							</button>
+							<ul *dropdownMenu class="dropdown-menu" role="menu">
+								<li role="menuitem"><a class="dropdown-item" (click)="editSkillLink(skill)">Edit</a></li>
+								<li role="menuitem"><a class="dropdown-item" (click)="deleteSkillLink(skill)">Delete</a></li>
 							</ul>
 						</div>
 					</td>

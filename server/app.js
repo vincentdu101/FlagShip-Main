@@ -90,11 +90,11 @@ app.put("/medium/:id", upload.array(), controllers.media.update);
 app.delete("/medium/:id", controllers.media.delete);
 
 /* Section */
-app.get("/sections", controllers.section.index);
-app.get("/sections/:id", controllers.section.get);
-app.post("/sections", upload.array(), controllers.section.create);
-app.put("/sections/:id", upload.array(), controllers.section.update);
-app.delete("/sections/:id", controllers.section.delete);
+app.get("/skills", controllers.skill.index);
+app.get("/skills/:id", controllers.skill.get);
+app.post("/skills", upload.array(), controllers.skill.create);
+app.put("/skills/:id", upload.array(), controllers.skill.update);
+app.delete("/skills/:id", controllers.skill.delete);
 
 /* Article */
 app.get("/articles", controllers.article.index);

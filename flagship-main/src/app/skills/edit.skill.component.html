@@ -1,0 +1,42 @@
+<div class="container-fluid top-buffer">
+
+	<h4>Edit Skill</h4>
+	
+	<form [formGroup]="skill">
+		<div class="row">
+			<div class="col-md-12 col-lg-5 card">
+				<div class="row padding-top-form-buffer">
+					<div class="col-xs-12 col-sm-3">
+						Name
+					</div>
+					<div class="col-xs-12 col-sm-9">
+						<input 	type="text" 
+								class="form-control" 
+								[(ngModel)]="name" 
+								name="name" 
+								formControlName="name"
+								[value]="getResourceValue('name')" />
+					</div>				
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						Level
+					</div>
+					<div class="col-xs-12 col-sm-9">
+						<input 	type="text" 
+								class="form-control" 
+								[(ngModel)]="level" 
+								name="level" 
+								formControlName="level"
+								[value]="getResourceValue('level')" />
+					</div>
+				</div>		
+			</div>
+		</div>
+		<div class="row col-xs-12 submit-row-buffer">
+			<button (click)="saveSkill()" class="btn btn-primary">Save</button>		
+			<button (click)="cancel()" class="btn btn-default">Cancel</button>	
+		</div>
+	</form>
+
+</div>

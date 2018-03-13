@@ -19,6 +19,8 @@ import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {CarouselComponent} from "./carousel/carousel.component";
 import {SkillsComponent} from "./skills/skills.component";
+import {EditSkillComponent} from "./skills/edit.skill.component";
+import {NewSkillComponent} from "./skills/new.skill.component";
 import {ResourcesComponent} from "./resources/resources.component";
 import {HomeComponent} from "./home/home.component";
 import {ProjectsComponent} from "./project/projects.component";
@@ -29,6 +31,7 @@ import {ViewResourceComponent} from "./resources/view.resource.component";
 import {CategoryService} from "./services/category/category.service";
 import {ResourceService} from "./services/resource/resource.service";
 import {CarouselService} from "./services/carousel/carousel.service";
+import {ViewService} from "./services/view/view.service";
 import {SkillsService} from "./services/skills/skills.service";
 import {PortfolioService} from "./services/portfolio/portfolio.service";
 import {Config} from "./services/configuration/config";
@@ -39,6 +42,8 @@ const routes: Routes = [
 	{path: "", component: HomeComponent},
 	{path: "resources", component: ResourcesComponent},
 	{path: "projects", component: ProjectsComponent},
+	{path: "skills/new", component: NewSkillComponent },
+	{path: "skills/edit/:id", component: EditSkillComponent },
 	{path: "resources/new", component: NewResourceComponent},
 	{path: "resources/edit/:id", component: EditResourceComponent},
 	{path: "resources/:id", component: ViewResourceComponent},
@@ -58,6 +63,8 @@ const routes: Routes = [
 		ProjectsComponent,
 		EditResourceComponent,
 		ViewResourceComponent,
+		EditSkillComponent,
+		NewSkillComponent,
 		NewResourceComponent,
 		ResourcesComponent
 	],
@@ -80,6 +87,7 @@ const routes: Routes = [
 		OtherService,
 		ResourceService,
 		CarouselService,
+		ViewService,
 		SkillsService,
 		PortfolioService,
 		Config,

@@ -1,13 +1,7 @@
 <div class="row top-buffer">
-	<div class="portfolio-dropdown col-xs-12 col-sm-5 col-md-4">
-	 	<ng-select [items]="portfolioOptions"
-	 				(selected)="portfolioSelected($event)"
-	 				placeholder="Select Portfolio Project">
-	 	</ng-select>
-	 	<h5>{{currentProject.name}}</h5>
-		<p>{{currentProject.description}}</p>
-	</div>
-	<div class="col-xs-12 col-sm-7 col-md-8 panel panel-default featured-project">
-		<img src="{{currentProject.image}} img-responsive" />
+	<div class="portfolio-card card col-12"
+		 *ngFor="let project of portfolio;">
+		{{project.name}}<br />
+		{{project.description}}	
 	</div>
 </div>

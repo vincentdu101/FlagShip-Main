@@ -1,39 +1,20 @@
 import {Component} from "@angular/core";
 import {PortfolioService} from "../services/portfolio/portfolio.service";
+import {IArticle} from "../services/configuration/config";
 
 @Component({
 	selector: "projects",
-	templateUrl: "./projects.component.html"
+	templateUrl: "./projects.component.html",
+	styleUrls: ["./projects.component.scss"]
 })
 
 export class ProjectsComponent {
 
-	public portfolio: Array<any> = [];
-	public portfolioOptions: Array<any> = [];
-	public currentProject: any = { 
-		name: "Choose Project", 
-		description: "to view", 
-		image: "" 
-	};
-
+	public portfolio: Array<IArticle> = [];
 	constructor(private portfolioService: PortfolioService) {
 		this.portfolioService.getPortfolio().subscribe((data) => {
-			this.portfolio = this.initPortfolioActive(data);
-			this.portfolioOptions = this.portfolioService.parsePortfolio(this.portfolio);
+			this.portfolio = data;
 		});
-	}
-
-	private initPortfolioActive(data) {
-		return data.map((item) => {
-			item.active = false;
-			return item;
-		});
-	}
-
-	public portfolioSelected(item: any): void {
-		this.currentProject = this.portfolio.filter((data) => {
-			return data.name === item.text;
-		})[0];
 	}
 
 }

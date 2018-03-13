@@ -3,7 +3,7 @@ var User = require("./user");
 var Role = require("./role");
 var Article = require("./article");
 var Category = require("./category");
-var Section = require("./section");
+var Skill = require("./skill");
 var Media = require("./media");
 
 
@@ -12,6 +12,6 @@ module.exports = {
 	role: Role,
 	article: Article,
 	category: Category, 
-	section: Section,
+	skill: Skill,
 	media: Media
 };

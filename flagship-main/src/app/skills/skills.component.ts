@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {SkillsService} from "../services/skills/skills.service";
+import * as d3 from "d3";
 
 @Component({
 	selector: "skills",
@@ -15,8 +16,11 @@ export class SkillsComponent {
 		this.skillsService.getSkills().subscribe((data) => {
 			this.skills = data;
 		});
+		this.setupCharts();
 	}
 
-
+	private setupCharts(): void {
+		console.log(d3);
+	}
 
 }

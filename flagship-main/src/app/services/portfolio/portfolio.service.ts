@@ -12,8 +12,8 @@ export class PortfolioService {
 
 	public getPortfolio() {
 		return Observable.create((observer) => {
-			this.categoryService.getResources("Portfolio").subscribe((slides) => {
-				observer.next(slides);
+			this.categoryService.getResources("Portfolio").subscribe((portfolio) => {
+				observer.next(portfolio);
 			});
 		});
 	}

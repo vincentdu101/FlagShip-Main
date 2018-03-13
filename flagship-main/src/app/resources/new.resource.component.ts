@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ResourceService} from "../services/resource/resource.service";
 import {CategoryService} from "../services/category/category.service";
+import {ViewService} from "../services/view/view.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormControl} from "@angular/forms";
 import {OtherService} from "../services/configuration/other.service";
@@ -28,6 +29,7 @@ export class NewResourceComponent implements OnInit {
 
 	constructor(private resourceService: ResourceService,
 		private categoryService: CategoryService,
+		private viewService: ViewService,
 		private activatedRoute: ActivatedRoute,
 		private otherService: OtherService) {
 		this.content = '<p>Hello <strong>World !</strong></p>';
@@ -69,14 +71,7 @@ export class NewResourceComponent implements OnInit {
 	}
 
 	public getResourceValue(attr: string): string {
-		let valueMap = this.resource.controls[attr].value;
-		if (valueMap && valueMap.value) {
-			return valueMap.value;
-		} else if (valueMap) {
-			return valueMap;
-		} else {
-			return "";
-		}
+		return this.viewService.getResourceValue(this.resource, attr);
 	}
 
 	public matchCategorySelected(category): { "active": boolean } {

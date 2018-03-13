@@ -46,7 +46,7 @@ export class CategoryService {
 	}
 
 	public findCategoryById(id: string) {
-		return this.categories.filter((data) => { 
+		return this.categories.filter((data: ICategory) => { 
 			if (data._id === id) {
 				return data;
 			} 
@@ -54,7 +54,7 @@ export class CategoryService {
 	} 
 
 	public findCategoryByName(name: string) {
-		return this.categories.filter((data) => {
+		return this.categories.filter((data: ICategory) => {
 			if (data.name === name) {
 				return data;
 			}
