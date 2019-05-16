@@ -8,7 +8,7 @@ var schema = new Schema({
 	description: {type: String},
 	body: {type: String},
 	created_at: {type: Date, default: Date.now},
-	category_id: {type: Schema.ObjectId, ref: "Categories"},
+	category: {type: String},
 	image: {type: String}
 });
 

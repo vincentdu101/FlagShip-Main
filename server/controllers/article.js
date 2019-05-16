@@ -45,7 +45,7 @@ ArticleController.create = function(req, res) {
 			description: req.body.description,
 			body: req.body.body,
 			image: req.body.image,
-			category_id: req.body.category_id
+			category: req.body.category
 		});
 
 		article.save(function(error, article){
@@ -78,9 +78,6 @@ ArticleController.get = function(req, res) {
 ArticleController.index = function(req, res) {
 	// if (req.user) {
 		var options = req.query || {};
-		if (options.category_id) {
-			options.category_id = new ObjectId(options.category_id);
-		}
 		if (options.name === "undefined") {
 			delete options.name;
 		} else {
@@ -109,7 +106,7 @@ ArticleController.update = function(req, res) {
 					description: req.body.description || article.description,
 					body: req.body.body || article.body,
 					image: req.body.image || article.image,
-					category_id: req.body.category_id || article.category_id
+					category: req.body.category || article.category
 				}, function(error, article){
 					if (error) {
 						res.status(500).json(error);
