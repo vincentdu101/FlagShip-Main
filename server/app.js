@@ -106,7 +106,7 @@ app.delete("/articles/:id", controllers.article.delete);
 /* login */
 // app.post("/login", upload.array(), controllers.user.login);
 app.post("/register", upload.array(), controllers.user.register);
-app.get("/me", controllers.user.verifyUser);
+app.post("/me", upload.array(), controllers.user.verifyUser);
 app.post("/login", upload.array(), controllers.user.login);
 
 app.listen(8080, function(){

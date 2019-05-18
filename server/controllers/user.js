@@ -1,12 +1,17 @@
 'use strict';
 
 var User = require("../models/User");
+var Role = require("../models/Role");
 var UserController = {};
 var notAuthenticated = "user not authenticated";
 var passport = require("passport");
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var keys = require("../config/keys");
+
+function respondWithUserAndRole(user) {
+	
+}
 
 UserController.get = function(req, res) {
 	if (req.isAuthenticated()) {
@@ -107,7 +112,7 @@ UserController.register = function(req, res) {
 };
 
 UserController.verifyUser = function(req, res) {
-	var token = req.headers["x-access-token"];
+	var token = req.body.token;
 	if (!token) {
 		return res.status(401).send({auth: false, message: "No token provided."});
 	} else {
@@ -122,7 +127,9 @@ UserController.verifyUser = function(req, res) {
 				if (error) {
 					res.status(500).send(error);
 				} else {
-					res.status(200).send(user);
+					Role.findById(user.role_id, function(err, role) {
+						res.status(200).send(user);
+					});
 				}
 			});
 		});
@@ -147,8 +154,15 @@ UserController.login = function(req, res) {
 			var token = jwt.sign({id: user._id}, keys.secret, {
 				expiresIn: 6000
 			});
-
-			res.status(200).send({auth: true, token: token});
+			
+			Role.findById(user.role_id, function(err, role) {
+				res.status(200).send({
+					auth: true, 
+					token: token, 
+					user: user,
+					role: role.name
+				});
+			});
 		}
 	});
 };
