@@ -45,7 +45,8 @@ ArticleController.create = function(req, res) {
 			description: req.body.description,
 			body: req.body.body,
 			image: req.body.image,
-			category: req.body.category
+			category: req.body.category,
+			demo: req.body.demo
 		});
 
 		article.save(function(error, article){
@@ -106,7 +107,8 @@ ArticleController.update = function(req, res) {
 					description: req.body.description || article.description,
 					body: req.body.body || article.body,
 					image: req.body.image || article.image,
-					category: req.body.category || article.category
+					category: req.body.category || article.category,
+					demo: req.body.demo || article.demo
 				}, function(error, article){
 					if (error) {
 						res.status(500).json(error);

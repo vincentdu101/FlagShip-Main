@@ -9,6 +9,7 @@ var schema = new Schema({
 	body: {type: String},
 	created_at: {type: Date, default: Date.now},
 	category: {type: String},
+	demo: {type: String},
 	image: {type: String}
 });
 
