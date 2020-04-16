@@ -100,6 +100,7 @@ app.delete("/skills/:id", controllers.skill.delete);
 app.get("/articles", controllers.article.index);
 app.get("/articles/:id", controllers.article.get);
 app.post("/articles", upload.array(), controllers.article.create);
+app.post("/articlesList", upload.array(), controllers.article.createList);
 app.put("/articles/:id", upload.array(), controllers.article.update);
 app.delete("/articles/:id", controllers.article.delete);
 

@@ -61,6 +61,38 @@ ArticleController.create = function(req, res) {
 	// }
 };
 
+ArticleController.createList = function(req, res) {
+	try {
+		var output = [];
+		for (let i = 0; i < req.body.articles.length; i++) {
+			let entry = req.body.articles[i];
+			var article = new Article({
+				name: entry.name,
+				description: entry.description,
+				body: entry.body,
+				image: entry.image,
+				category: entry.category,
+				demo: entry.demo
+			});
+			
+			article.save(function(error, article){
+				output.push(article);
+				console.log("saved article : ", article._id);
+
+				if (error) {
+					throw new Exception(error);
+				}
+
+				if (output.length == req.body.articles.length) {
+					res.status(200).json(output);
+				}
+			});
+		}
+	} catch(exception) {
+		res.status(500).json(exception);
+	}
+};
+
 ArticleController.get = function(req, res) {
 	// if (req.user) {
 		var id = req.params.id;
